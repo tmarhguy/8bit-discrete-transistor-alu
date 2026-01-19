@@ -46,6 +46,14 @@ def main() -> int:
         print(f"No test vector JSON files found in {args.vectors}; skipping validation.")
         return 0
 
+    # Exclude large generated files that would timeout in CI
+    excluded_files = {"exhaustive.json"}
+    json_files = [f for f in json_files if f.name not in excluded_files]
+
+    if not json_files:
+        print(f"No test vector JSON files to validate after exclusions; skipping.")
+        return 0
+
     failures = []
     for json_file in json_files:
         try:

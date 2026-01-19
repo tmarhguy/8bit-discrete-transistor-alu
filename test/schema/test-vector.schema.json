@@ -14,17 +14,34 @@
     },
     {
       "type": "object",
-      "required": ["vectors"],
-      "properties": {
-        "vectors": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/testVector"
+      "oneOf": [
+        {
+          "required": ["vectors"],
+          "properties": {
+            "vectors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/testVector"
+              },
+              "minItems": 1
+            }
           },
-          "minItems": 1
+          "additionalProperties": true
+        },
+        {
+          "required": ["tests"],
+          "properties": {
+            "tests": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/testVector"
+              },
+              "minItems": 1
+            }
+          },
+          "additionalProperties": true
         }
-      },
-      "additionalProperties": true
+      ]
     }
   ],
   "$defs": {
