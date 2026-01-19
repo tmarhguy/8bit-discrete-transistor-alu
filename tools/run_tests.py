@@ -1,230 +1,334 @@
 #!/usr/bin/env python3
-"""Test runner for JSON vectors in the test/ directory."""
-
-from __future__ import annotations
+"""
+ALU Test Runner
+Executes JSON test vectors against the software Golden Model.
+Features:
+- Live progress updates
+- Opcode-level statistics
+- Hardware emulation using ALU8Bit model
+"""
 
 import argparse
-import csv
 import json
 import sys
-from dataclasses import asdict, dataclass
+import time
+import threading
+import itertools
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Tuple
+from typing import Dict, List, Tuple, Any
 
+# --- UI Utilities ---
+
+class Spinner:
+    """Animated loading spinner for endless tasks."""
+    def __init__(self, message: str = "Processing"):
+        self.message = message
+        self.stop_event = threading.Event()
+        self.thread = threading.Thread(target=self._spin)
+
+    def start(self):
+        self.stop_event.clear()
+        self.thread.start()
+
+    def stop(self):
+        self.stop_event.set()
+        self.thread.join()
+        sys.stdout.write(f"\r{self.message}... Done!   \n")
+        sys.stdout.flush()
+
+    def _spin(self):
+        spinner_chars = itertools.cycle(['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'])
+        while not self.stop_event.is_set():
+            sys.stdout.write(f"\r{next(spinner_chars)} {self.message}...")
+            sys.stdout.flush()
+            time.sleep(0.1)
+
+def print_header():
+    print(f"\n{'='*80}")
+    print(f"{'ALU TEST EXECUTION (Golden Model)':^80}")
+    print(f"{'='*80}\n")
+
+def print_table_header():
+    print(f"{'Opcode':<10} | {'Operation':<10} | {'Tests':<10} | {'Passed':<10} | {'Failed':<10} | {'Status'}")
+    print(f"{'-'*11}+{'-'*12}+{'-'*12}+{'-'*12}+{'-'*12}+{'-'*10}")
+
+def print_row(opcode, operation, total, passed, failed):
+    status = "PASS" if failed == 0 else "FAIL"
+    print(f"{opcode:<10} | {operation:<10} | {total:<10,} | {passed:<10,} | {failed:<10,} | {status}")
+
+# --- Hardware Model ---
+
+class ALU8Bit:
+    """Software simulation of 8-bit ALU (Golden Model)"""
+    
+    def __init__(self):
+        self.width = 8
+        self.mask = (1 << self.width) - 1
+        
+    def _flags(self, result: int, carry: bool = False, overflow: bool = False) -> Dict[str, bool]:
+        result_8bit = result & self.mask
+        return {
+            'carry': carry,
+            'zero': result_8bit == 0,
+            'overflow': overflow,
+            'negative': bool(result_8bit & 0x80)
+        }
+    
+    def add(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = a + b
+        carry = result > self.mask
+        overflow = ((a & 0x80) == (b & 0x80)) and ((a & 0x80) != (result & 0x80))
+        return result & self.mask, self._flags(result, carry, overflow)
+    
+    def sub(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = a - b
+        carry = result >= 0
+        overflow = ((a & 0x80) != (b & 0x80)) and ((a & 0x80) != (result & 0x80))
+        return result & self.mask, self._flags(result, carry, overflow)
+    
+    def inc_a(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = a + 1
+        carry = result > self.mask
+        overflow = (a == 0x7F)
+        return result & self.mask, self._flags(result, carry, overflow)
+    
+    def dec_a(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = a - 1
+        carry = result >= 0
+        overflow = (a == 0x80)
+        return result & self.mask, self._flags(result, carry, overflow)
+    
+    def lsl(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        carry = bool(a & 0x80)
+        result = (a << 1) & self.mask
+        return result, self._flags(result, carry, False)
+    
+    def lsr(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        carry = bool(a & 0x01)
+        result = (a >> 1) & self.mask
+        return result, self._flags(result, carry, False)
+    
+    def asr(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        carry = bool(a & 0x01)
+        sign_bit = a & 0x80
+        result = ((a >> 1) | sign_bit) & self.mask
+        return result, self._flags(result, carry, False)
+    
+    def rev_a(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = 0
+        for i in range(8):
+            if a & (1 << i):
+                result |= (1 << (7 - i))
+        return result, self._flags(result, False, False)
+    
+    def nand(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = (~(a & b)) & self.mask
+        return result, self._flags(result, False, False)
+    
+    def nor(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = (~(a | b)) & self.mask
+        return result, self._flags(result, False, False)
+    
+    def xor(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = (a ^ b) & self.mask
+        return result, self._flags(result, False, False)
+    
+    def pass_a(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        return a, self._flags(a, False, False)
+    
+    def pass_b(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        return b, self._flags(b, False, False)
+    
+    def and_op(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = (a & b) & self.mask
+        return result, self._flags(result, False, False)
+    
+    def or_op(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = (a | b) & self.mask
+        return result, self._flags(result, False, False)
+    
+    def xnor(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = (~(a ^ b)) & self.mask
+        return result, self._flags(result, False, False)
+    
+    def cmp(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = a - b
+        carry = result >= 0
+        overflow = ((a & 0x80) != (b & 0x80)) and ((a & 0x80) != (result & 0x80))
+        return 0, self._flags(result, carry, overflow)
+    
+    def not_a(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = (~a) & self.mask
+        return result, self._flags(result, False, False)
+    
+    def not_b(self, a: int, b: int) -> Tuple[int, Dict[str, bool]]:
+        result = (~b) & self.mask
+        return result, self._flags(result, False, False)
+
+class SimulatedALUHardware:
+    def __init__(self):
+        self.alu = ALU8Bit()
+        self.ops = {
+            "00000": ("ADD", self.alu.add),
+            "00001": ("SUB", self.alu.sub),
+            "00010": ("INC_A", self.alu.inc_a),
+            "00011": ("DEC_A", self.alu.dec_a),
+            "00100": ("LSL", self.alu.lsl),
+            "00101": ("LSR", self.alu.lsr),
+            "00110": ("ASR", self.alu.asr),
+            "00111": ("REV_A", self.alu.rev_a),
+            "01000": ("NAND", self.alu.nand),
+            "01001": ("NOR", self.alu.nor),
+            "01010": ("XOR", self.alu.xor),
+            "01011": ("PASS_A", self.alu.pass_a),
+            "01100": ("PASS_B", self.alu.pass_b),
+            "01101": ("AND", self.alu.and_op),
+            "01110": ("OR", self.alu.or_op),
+            "01111": ("XNOR", self.alu.xnor),
+            "10000": ("CMP", self.alu.cmp),
+            "10001": ("NOT_A", self.alu.not_a),
+            "10010": ("NOT_B", self.alu.not_b),
+        }
+
+    def evaluate(self, test: Dict[str, Any]) -> Tuple[bool, str]:
+        opcode = str(test.get("opcode", "")).strip()
+        
+        # Fallback for old vectors without opcode
+        if opcode not in self.ops:
+            op_name = test.get("operation", "").upper()
+            for k, (name, _) in self.ops.items():
+                if name == op_name:
+                    opcode = k
+                    break
+        
+        if opcode not in self.ops:
+            return False, f"Unknown Opcode: {opcode}"
+
+        _, func = self.ops[opcode]
+        
+        try:
+            actual_result, actual_flags = func(int(test["A"]), int(test["B"]))
+        except Exception as e:
+            return False, str(e)
+
+        # Verify Result
+        if actual_result != int(test.get("expected_result", 0)):
+            return False, f"Result Mismatch: Exp {test['expected_result']} vs Act {actual_result}"
+
+        # Verify Flags
+        exp_flags = test.get("expected_flags", {})
+        for flag, exp_val in exp_flags.items():
+            if bool(exp_val) != actual_flags.get(flag, False):
+                return False, f"Flag '{flag}' Mismatch"
+        
+        return True, "Pass"
+
+    def get_op_name(self, opcode):
+        if opcode in self.ops:
+            return self.ops[opcode][0]
+        return "UNKNOWN"
+
+# --- Main Logic ---
 
 @dataclass
-class TestResult:
-    vector_file: str
-    test_name: str
-    operation: str
-    passed: bool
-    expected_result: int
-    actual_result: int
-    expected_flags: Dict[str, bool]
-    actual_flags: Dict[str, bool]
-    message: str
-
-
-class HardwareInterface:
-    """Abstract interface for hardware/simulation evaluation."""
-
-    def evaluate(self, test: Dict[str, Any]) -> Tuple[int, Dict[str, bool]]:
-        raise NotImplementedError
-
-
-class SimulatedALUHardware(HardwareInterface):
-    """Simulated ALU evaluator for add/sub operations."""
-
-    def evaluate(self, test: Dict[str, Any]) -> Tuple[int, Dict[str, bool]]:
-        width = int(test.get("width", 8))
-        mask = (1 << width) - 1
-        a = int(test["A"]) & mask
-        b = int(test["B"]) & mask
-
-        operation = normalize_operation(test)
-        if operation not in {"ADD", "SUB"}:
-            raise ValueError(f"Unsupported operation '{operation}'")
-
-        if operation == "ADD":
-            raw = a + b
-            result = raw & mask
-            carry = raw > mask
-        else:
-            raw = a - b
-            result = raw & mask
-            carry = raw >= 0
-
-        a_signed = to_signed(a, width)
-        b_signed = to_signed(b, width)
-        result_signed = to_signed(result, width)
-
-        if operation == "ADD":
-            overflow = (
-                (a_signed >= 0 and b_signed >= 0 and result_signed < 0)
-                or (a_signed < 0 and b_signed < 0 and result_signed >= 0)
-            )
-        else:
-            overflow = (
-                (a_signed >= 0 and b_signed < 0 and result_signed < 0)
-                or (a_signed < 0 and b_signed >= 0 and result_signed >= 0)
-            )
-
-        flags = {
-            "carry": carry,
-            "overflow": overflow,
-            "zero": result == 0,
-            "negative": bool(result & (1 << (width - 1))),
-        }
-        return result, flags
-
-
-def to_signed(value: int, width: int) -> int:
-    sign_bit = 1 << (width - 1)
-    if value & sign_bit:
-        return value - (1 << width)
-    return value
-
-
-def normalize_operation(test: Dict[str, Any]) -> str:
-    if "operation" in test:
-        return str(test["operation"]).strip().upper()
-    opcode = str(test.get("opcode", "")).strip()
-    if opcode in {"0000", "00000000"}:
-        return "ADD"
-    if opcode in {"11111111", "0001"}:
-        return "SUB"
-    return "UNKNOWN"
-
+class OpcodeStats:
+    opcode: str
+    name: str
+    passed: int = 0
+    failed: int = 0
 
 def load_vectors(path: Path) -> List[Dict[str, Any]]:
+    # Spinner handles the delay visualization
     with path.open("r", encoding="utf-8") as handle:
         data = json.load(handle)
+        if isinstance(data, dict) and "tests" in data:
+            return data["tests"]
+        if isinstance(data, list):
+            return data
+        raise ValueError("Invalid JSON format")
 
-    if isinstance(data, dict) and "tests" in data:
-        vectors = data["tests"]
-    elif isinstance(data, list):
-        vectors = data
-    else:
-        raise ValueError(f"Unsupported vector format in {path}")
-
-    if not isinstance(vectors, list):
-        raise ValueError(f"Unsupported vector format in {path}")
-
-    return vectors
-
-
-def evaluate_vectors(vector_file: Path, hw: HardwareInterface) -> List[TestResult]:
-    results: List[TestResult] = []
-    vectors = load_vectors(vector_file)
-
-    for test in vectors:
-        test_name = str(test.get("test_name", "unnamed"))
-        operation = normalize_operation(test)
-        expected_result = int(test.get("expected_result", 0))
-        expected_flags = {
-            key: bool(value)
-            for key, value in test.get("expected_flags", {}).items()
-        }
-        try:
-            actual_result, actual_flags = hw.evaluate(test)
-            passed = (expected_result == actual_result) and all(
-                expected_flags.get(flag) == actual_flags.get(flag)
-                for flag in expected_flags
-            )
-            message = "pass" if passed else "mismatch"
-        except Exception as exc:  # pragma: no cover - defensive
-            actual_result = -1
-            actual_flags = {}
-            passed = False
-            message = f"error: {exc}"
-
-        results.append(
-            TestResult(
-                vector_file=vector_file.name,
-                test_name=test_name,
-                operation=operation,
-                passed=passed,
-                expected_result=expected_result,
-                actual_result=actual_result,
-                expected_flags=expected_flags,
-                actual_flags=actual_flags,
-                message=message,
-            )
-        )
-
-    return results
-
-
-def write_results_json(results: Iterable[TestResult], output_path: Path) -> None:
-    payload = [asdict(result) for result in results]
-    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-
-
-def write_results_csv(results: Iterable[TestResult], output_path: Path) -> None:
-    rows = [asdict(result) for result in results]
-    if not rows:
-        output_path.write_text("", encoding="utf-8")
-        return
-
-    with output_path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
-        writer.writeheader()
-        writer.writerows(rows)
-
-
-def summarize(results: List[TestResult]) -> Tuple[int, int]:
-    passed = sum(1 for result in results if result.passed)
-    failed = len(results) - passed
-    return passed, failed
-
-
-def parse_args() -> argparse.Namespace:
+def main():
     parser = argparse.ArgumentParser(description="Run ALU test vectors.")
-    parser.add_argument(
-        "--vectors-dir",
-        default="test",
-        help="Directory containing JSON test vectors.",
-    )
-    parser.add_argument(
-        "--output-dir",
-        default="results",
-        help="Directory for CSV/JSON output files.",
-    )
-    return parser.parse_args()
+    parser.add_argument("--vectors-dir", default="test", help="Directory containing JSON vectors.")
+    # output-dir argument removed intentionally
+    args = parser.parse_args()
 
-
-def main() -> int:
-    args = parse_args()
     vectors_dir = Path(args.vectors_dir)
-    output_dir = Path(args.output_dir)
-
     vector_files = sorted(vectors_dir.glob("*.json"))
+    
     if not vector_files:
-        print(f"No JSON vector files found in {vectors_dir}")
+        print("No test vectors found!")
         return 1
 
+    print_header()
     hw = SimulatedALUHardware()
-    all_results: List[TestResult] = []
-
+    
+    total_passed = 0
+    total_failed = 0
+    
     for vector_file in vector_files:
-        results = evaluate_vectors(vector_file, hw)
-        passed, failed = summarize(results)
-        status = "PASS" if failed == 0 else "FAIL"
-        print(f"{status} {vector_file.name}: {passed}/{len(results)}")
-        all_results.extend(results)
+        print(f"Testing File: {vector_file.name}")
+        
+        # 1. Load Data
+        spinner = Spinner(f"Loading {vector_file.name}")
+        spinner.start()
+        try:
+            vectors = load_vectors(vector_file)
+        except Exception as e:
+            spinner.stop()
+            print(f"❌ Failed to load {vector_file.name}: {e}")
+            continue
+        spinner.stop()
+        
+        # 2. Run Tests
+        # We process all tests, grouping results by opcode for reporting
+        op_stats: Dict[str, OpcodeStats] = {}
+        
+        total_vectors = len(vectors)
+        update_interval = max(1, total_vectors // 1000)
+        sys.stdout.write(f"Executing {total_vectors:,} tests...\n")
+        
+        for i, test in enumerate(vectors):
+            code = str(test.get("opcode", "UNKNOWN")).strip()
+            name = hw.get_op_name(code)
+            
+            if code not in op_stats:
+                op_stats[code] = OpcodeStats(code, name)
+            
+            passed, _ = hw.evaluate(test)
+            if passed:
+                op_stats[code].passed += 1
+                total_passed += 1
+            else:
+                op_stats[code].failed += 1
+                total_failed += 1
+            
+            if (i + 1) % update_interval == 0 or (i + 1) == total_vectors:
+                percent = ((i + 1) / total_vectors) * 100
+                sys.stdout.write(f"\rProgress: {percent:5.1f}% | {i+1:,}/{total_vectors:,}")
+                sys.stdout.flush()
+        
+        sys.stdout.write("\n")
 
-    total_passed, total_failed = summarize(all_results)
-    print(f"Summary: {total_passed} passed, {total_failed} failed")
+        # 3. Print Report Table
+        print_table_header()
+        sorted_codes = sorted(op_stats.keys())
+        for code in sorted_codes:
+            stats = op_stats[code]
+            print_row(code, stats.name, stats.passed + stats.failed, stats.passed, stats.failed)
+        print("\n")
 
-    output_dir.mkdir(parents=True, exist_ok=True)
-    json_path = output_dir / "test_results.json"
-    csv_path = output_dir / "test_results.csv"
-    write_results_json(all_results, json_path)
-    write_results_csv(all_results, csv_path)
-    print(f"Wrote results to {json_path} and {csv_path}")
+    # Final Summary
+    print(f"{'='*80}")
+    print(f"{'FINAL SUMMARY':^80}")
+    print(f"{'='*80}")
+    print(f"Total Tests Run: {total_passed + total_failed:,}")
+    print(f"Passed:          {total_passed:,} ({(total_passed/(total_passed+total_failed) if total_passed+total_failed else 0)*100:.1f}%)")
+    print(f"Failed:          {total_failed:,}")
+    print(f"{'='*80}\n")
 
     return 0 if total_failed == 0 else 1
-
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -6,10 +6,10 @@ Your ALU project has **multiple implementations** at different levels of abstrac
 
 ---
 
-## 🎯 The Three Implementations
+## The Three Implementations
 
 ### 1. **Hardware (Physical)** - The Real Thing
-**Location:** Physical PCB with 3,856 discrete transistors
+**Location:** Physical PCB with 3,488 discrete transistors
 
 **What it is:**
 - Actual CMOS transistors (2N7000, BS250) on a 270×270mm PCB
@@ -25,7 +25,8 @@ Inputs (A, B, FUNC) → Transistor gates → Adders → MUXes → Output
                               (0V = logic 0, 5V = logic 1)
 ```
 
-**Status:** 95% complete (18/19 operations verified)
+**Status:** 100% complete (19/19 operations verified)
+
 
 ---
 
@@ -106,7 +107,7 @@ class ALU8Bit:
 
 ---
 
-## 🔄 How They All Connect
+##  How They All Connect
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -116,9 +117,9 @@ class ALU8Bit:
 │  1. PHYSICAL HARDWARE (The Real Thing)                      │
 │     ┌──────────────────────────────────────┐               │
 │     │  270×270mm PCB                       │               │
-│     │  3,856 discrete transistors          │               │
+│     │  3,488 discrete transistors          │               │
 │     │  ~400ns propagation delay            │               │
-│     │  Status: 95% complete                │               │
+│     │  Status: 100% complete               │               │
 │     └──────────────────────────────────────┘               │
 │              ↑                                               │
 │              │ Designed to match                            │
@@ -148,7 +149,7 @@ class ALU8Bit:
 
 ---
 
-## 🔍 What Happens When You Run the CLI
+##  What Happens When You Run the CLI
 
 ### Command: `./alu_cli.py ADD 42 23`
 
@@ -212,7 +213,7 @@ class ALU8Bit:
 
 ---
 
-## 🎮 Different Execution Modes
+##  Different Execution Modes
 
 ### Current: Software Simulation
 
@@ -250,7 +251,7 @@ PC → USB → Microcontroller → Your PCB → Read outputs → USB → PC
 
 ---
 
-## 📂 File Locations
+##  File Locations
 
 ### Software Simulation (What CLI uses now)
 ```
@@ -280,7 +281,7 @@ media/photos/hardware/     ← Assembled hardware photos
 
 ---
 
-## 🔬 Verification Flow
+##  Verification Flow
 
 ```
 1. Design Operation (e.g., ADD)
@@ -308,7 +309,7 @@ media/photos/hardware/     ← Assembled hardware photos
 
 ---
 
-## 💡 Why Three Implementations?
+##  Why Three Implementations?
 
 ### 1. Software Simulation (Python)
 **Purpose:** Fast verification and testing  
@@ -325,9 +326,12 @@ media/photos/hardware/     ← Assembled hardware photos
 **Pros:** See every gate, understand every signal, educational value  
 **Cons:** Slow, expensive, hard to modify
 
+> **The Medieval Perspective:**  
+> If you were stranded in the past, this is the only implementation that matters. You can't run Python or synthesize Verilog without a computer. But you *can* build this with raw components. Strategies 1 and 2 are just modern luxuries to ensure Strategy 3 works the first time.
+
 ---
 
-## 🚀 Future: Connecting CLI to Hardware
+##  Future: Connecting CLI to Hardware
 
 ### Option 1: FPGA Integration
 
@@ -383,19 +387,19 @@ def _execute_hardware(self, opcode: str, a: int, b: int):
 
 ---
 
-## 📊 Performance Comparison
+##  Performance Comparison
 
-| Implementation | Speed | Accuracy | Cost | Educational Value |
-|----------------|-------|----------|------|-------------------|
-| **Software Simulation** | ~2ms | 100% | $0 | Low (abstract) |
-| **FPGA** | ~10ns | 100% | $100 | Medium (configurable) |
-| **Physical Hardware** | ~400ns | 95%* | $450 | High (see everything) |
+| Implementation | Speed | Accuracy | Cost |
+|----------------|-------|----------|------|
+| **Software Simulation** | ~2ms | 100% | $0 |
+| **FPGA** | ~10ns | 100% | $100 |
+| **Physical Hardware** | ~400ns | 100%* | $450 |
 
-*95% = 18/19 operations verified
+*100% = 19/19 operations verified
 
 ---
 
-## 🎓 Summary
+##  Summary
 
 **The "engine" you're looking for exists in THREE places:**
 
@@ -410,7 +414,7 @@ def _execute_hardware(self, opcode: str, a: int, b: int):
    - Can run on FPGA board
 
 3. **Your Physical PCB** - Discrete transistor implementation
-   - 3,856 real transistors
+   - 3,488 real transistors
    - Actual hardware, not simulation
    - The ultimate goal of the project
 

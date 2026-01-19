@@ -169,24 +169,24 @@ Detailed breakdown of all components used in the `alu_top.circ` Logisim circuit.
 ### Component Size Patterns
 
 **AND Gates:**
-- ✅ Used: 2-input, 3-input, 4-input
-- ❌ Not used: 5-input, 6-input, 7-input, 8+ inputs
+-  Used: 2-input, 3-input, 4-input
+-  Not used: 5-input, 6-input, 7-input, 8+ inputs
 
 **OR Gates:**
-- ✅ Used: 2-input, 3-input
-- ❌ Not used: 4-input, 5-input, 6-input, 7-input, 8+ inputs
+-  Used: 2-input, 3-input
+-  Not used: 4-input, 5-input, 6-input, 7-input, 8+ inputs
 
 **NOR Gates:**
-- ✅ Used: 2-input, 8-input
-- ❌ Not used: 3-input, 4-input, 5-input, 6-input, 7-input
+-  Used: 2-input, 8-input
+-  Not used: 3-input, 4-input, 5-input, 6-input, 7-input
 
 **Multiplexers:**
-- ✅ Used: 2:1, 4:1, 8:1
-- ❌ Not used: 16:1, 32:1, or higher order MUXes
+-  Used: 2:1, 4:1, 8:1
+-  Not used: 16:1, 32:1, or higher order MUXes
 
 **Splitters:**
-- ✅ Used: 3-way, 4-way, 5-way, 8-way
-- ❌ Not used: 2-way, 6-way, 7-way, 9+ way
+-  Used: 3-way, 4-way, 5-way, 8-way
+-  Not used: 2-way, 6-way, 7-way, 9+ way
 
 ---
 

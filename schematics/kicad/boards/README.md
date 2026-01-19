@@ -10,7 +10,7 @@ This directory contains KiCad projects for each functional board in the ALU syst
 
 | Board | Size | Transistors | Purpose | Status |
 |-------|------|-------------|---------|--------|
-| [alu/](alu/) | 270×270mm | 3,856+ | **Main combinational ALU** (monolithic) | Complete |
+| [alu/](alu/) | 270×270mm | 3,488 | **Main combinational ALU** (monolithic) | Complete |
 | [main_logic/](main_logic/) | varies | 640+ | Logic unit subsystem | Complete |
 | [add_sub/](add_sub/) | varies | 120+ | Add/subtract XOR array | Complete |
 | [flags/](flags/) | varies | ~240 | Flag generation (LESS/EQUAL/POSITIVE/COUT) | Complete |
@@ -46,9 +46,9 @@ Current implementation uses modular approach for easier assembly and debugging.
 - Optimal signal integrity
 
 **Challenges:**
-- Large format PCB (higher cost)
+- Large format PCB
 - Difficult to debug subsystems
-- Must solder all 3,856+ transistors before testing
+- Must solder all components (3,488 equiv. transistors) before testing
 
 ---
 
@@ -246,17 +246,18 @@ OUT: M, MUX_SEL, INV_OUT, LOGIC_SEL[2:0]
 
 ### Component Summary
 
-| Category | Quantity | Example Part | Estimated Cost |
-|----------|----------|--------------|----------------|
-| **NMOS Transistors** | ~2,000 | 2N7000 | $80 |
-| **PMOS Transistors** | ~2,000 | BS250 | $80 |
-| **74HC157 (MUX)** | 2 | 74HC157N | $2 |
-| **Resistors** | ~500 | 10kΩ, 220Ω | $20 |
-| **Capacitors** | ~50 | 100nF, 10µF | $15 |
-| **LEDs** | ~32 | Red 5mm | $8 |
-| **Headers** | ~20 | 2.54mm pitch | $10 |
-| **PCB (270×270mm)** | 1 | Large format | $100 |
-| **Total** | | | **~$315** |
+| Category | Quantity | Example Part |
+|----------|----------|--------------|
+| **NMOS Transistors** | ~312 | 2N7000 |
+| **PMOS Transistors** | ~312 | BS250 |
+| **74HC157 (MUX)** | 36 | 74HC157N |
+| **74HC86 (XOR)** | 10 | 74HC86 |
+| **Resistors** | ~500 | 10kΩ, 220Ω |
+| **Capacitors** | ~50 | 100nF, 10µF |
+| **LEDs** | ~32 | Red 5mm |
+| **Headers** | ~20 | 2.54mm pitch |
+| **PCB (270×270mm)** | 1 | Large format |
+| **Total** | | |
 
 See [docs/build-notes/bom.md](../../docs/build-notes/bom.md) for complete BOM.
 
@@ -311,7 +312,7 @@ See [docs/build-notes/bom.md](../../docs/build-notes/bom.md) for complete BOM.
 ### Key Features
 
 - **270×270mm main ALU** or modular boards
-- **3,856+ discrete transistors**
+- **3,488 transistors** (Hybrid: Discrete + 74xx ICs)
 - **5V CMOS logic**
 - **Pure combinational architecture**
 - **Fabrication-ready Gerbers**

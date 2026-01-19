@@ -4,13 +4,13 @@ This document defines the complete specification for the 8-bit discrete transist
 
 ## Overview
 
-The ALU implements 16+ operations on 8-bit operands, supporting both arithmetic and logic operations.
+The ALU implements 19 operations on 8-bit operands, supporting arithmetic, logic, shift, and comparison operations.
 
 ## Inputs
 
 - `A[7:0]` - 8-bit operand A
-- `B[7:0]` - 8-bit operand B  
-- `FUNC[3:0]` - 4-bit operation selector
+- `B[7:0]` - 8-bit operand B
+- `FUNC[4:0]` - 5-bit operation selector (Opcode)
 - `M` - ADD/SUB mode (0=ADD, 1=SUB)
 - `INV_OUT` - Global post-mux inversion bit
 
@@ -24,4 +24,3 @@ The ALU implements 16+ operations on 8-bit operands, supporting both arithmetic 
 ## Operations
 
 See [opcode_table.md](opcode/opcode_table.md) for complete operation list.
-

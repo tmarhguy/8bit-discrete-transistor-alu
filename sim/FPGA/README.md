@@ -21,15 +21,15 @@
 
 ## Overview
 
-This FPGA implementation provides a complete, synthesizable Verilog port of the discrete transistor 8-bit ALU. The design implements all 19 operations with full flag generation, making it suitable for integration into larger CPU designs or standalone use.
+This FPGA implementation provides a complete, high-performance SystemVerilog behavioral model of the discrete transistor 8-bit ALU. This implementation replaces the initial auto-generated netlist with clean, synthesizable RTL designed to match the 3,488-transistor architecture exactly.
 
 ### Key Features
 
-- ✅ **19 Operations**: Complete arithmetic and logic instruction set
-- ✅ **Flag Generation**: Carry, Zero, Negative, Comparison flags
-- ✅ **Synthesizable**: Fully synthesizable for Xilinx Artix-7 and compatible FPGAs
-- ✅ **Tested**: Comprehensive testbench coverage
-- ✅ **Documented**: Industry-standard documentation
+-  **19 Operations**: Complete arithmetic and logic instruction set synchronized with main README
+-  **Flag Generation**: 8-bit flag output (Zero, CarryOut, Negative, Overflow, Equal, Less, Greater)
+-  **Synthesizable**: Fully synthesizable for Xilinx Artix-7 and compatible FPGAs
+-  **Tested**: Comprehensive testbench coverage
+-  **Documented**: Industry-standard documentation
 
 ### Supported Platforms
 
@@ -68,12 +68,12 @@ This FPGA implementation provides a complete, synthesizable Verilog port of the 
                                │
                     ┌──────────▼──────────┐
                     │  Flag Generation    │
-                    │  (C, Z, N, CMP)    │
+                    │      (8-bit)        │
                     └──────────┬──────────┘
                                │
                     ┌──────────▼──────────┐
                     │   ALU Output        │
-                    │  Result[7:0]       │
+                    │  Result[7:0]        │
                     └─────────────────────┘
 ```
 
@@ -88,34 +88,18 @@ This FPGA implementation provides a complete, synthesizable Verilog port of the 
 ## Module Structure
 
 ```
-logisim/FPGA/
-├── verilog/
-│   ├── circuit/
-│   │   └── main.v              # Main ALU module (top-level)
-│   ├── arith/
-│   │   └── Adder.v             # 8-bit ripple-carry adder
-│   ├── gates/
-│   │   ├── AND_GATE.v          # 2-input AND gate
-│   │   ├── AND_GATE_3_INPUTS.v # 3-input AND gate
-│   │   ├── AND_GATE_4_INPUTS.v # 4-input AND gate
-│   │   ├── NAND_GATE_BUS.v     # 8-bit NAND bus
-│   │   ├── NOR_GATE.v          # 2-input NOR gate
-│   │   ├── NOR_GATE_8_INPUTS.v # 8-input NOR (zero detection)
-│   │   ├── NOR_GATE_BUS.v      # 8-bit NOR bus
-│   │   ├── OR_GATE.v           # 2-input OR gate
-│   │   └── XOR_GATE_BUS_ONEHOT.v # 8-bit XOR bus
-│   ├── plexers/
-│   │   ├── Multiplexer_bus_2.v # 2:1 8-bit mux
-│   │   ├── Multiplexer_bus_4.v # 4:1 8-bit mux
-│   │   └── Multiplexer_bus_8.v # 8:1 8-bit mux
-│   ├── memory/
-│   │   └── LogisimCounter.v    # Counter (for opcode)
-│   ├── base/
-│   │   ├── LogisimClockComponent.v
-│   │   ├── logisimTickGenerator.v
-│   │   └── synthesizedClockGenerator.v
-│   └── toplevel/
-│       └── logisimTopLevelShell.v # Top-level wrapper
+sim/FPGA/
+├── src/                        # Synthesizable RTL (SystemVerilog)
+│   ├── ALU.sv                  # Main ALU module core
+│   ├── FPGA_Top.sv             # Top-level wrapper for FPGA boards
+│   ├── ClockDivider.sv         # Clock management for hardware
+│   └── Counter.sv              # Opcode cycle demo counter
+├── testbench/                  # Verification suite
+│   ├── alu_tb.sv               # SystemVerilog testbench
+│   └── ...
+├── scripts/                    # Vivado automation
+├── xdc/                        # Constraint files
+└── docs/                       # Technical reports
 ├── testbench/
 │   ├── alu_tb.v                # Main testbench
 │   ├── test_vectors.v         # Test case definitions
@@ -238,7 +222,7 @@ vivado -mode batch -source vivadoLoadBitStream.tcl
 
 ```bash
 # Using Vivado Simulator
-cd logisim/FPGA/testbench
+cd sim/FPGA/testbench
 vivado -mode batch -source run_sim.tcl
 
 # Or using ModelSim/QuestaSim
@@ -247,10 +231,10 @@ vsim -do run_sim.do
 
 ### Test Coverage
 
-- ✅ All 19 operations tested
-- ✅ Edge cases (overflow, underflow, zero)
-- ✅ Flag generation verification
-- ✅ Comparison operation validation
+-  All 19 operations tested
+-  Edge cases (overflow, underflow, zero)
+-  Flag generation verification
+-  Comparison operation validation
 
 **See**: [Testing Guide](docs/TESTING.md) for detailed test procedures.
 
@@ -302,15 +286,15 @@ vsim -do run_sim.do
 
 ### Implementation Status
 
-- ✅ **Verilog Code**: Complete (auto-generated from Logisim, then enhanced)
-- ✅ **Testbenches**: Complete (all 19 operations)
-- ✅ **Documentation**: Complete (industry-standard)
-- ✅ **Performance Analysis**: Complete (synthesis reports)
-- ⚠️ **Hardware Testing**: Pending (requires FPGA board)
+-  **Verilog Code**: Complete (auto-generated from Logisim, then enhanced)
+-  **Testbenches**: Complete (all 19 operations)
+-  **Documentation**: Complete (industry-standard)
+-  **Performance Analysis**: Complete (synthesis reports)
+-  **Hardware Testing**: Pending (requires FPGA board)
 
 ### Known Limitations
 
-- **Auto-Generated Code**: Original code from Logisim Evolution (verbosely named)
+- **Clean RTL**: Replaced original Logisim-generated netlist with human-readable SystemVerilog
 - **Single Platform**: Currently optimized for Xilinx Artix-7
 - **No Pipelining**: All operations complete in single cycle
 

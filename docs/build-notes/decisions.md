@@ -10,5 +10,5 @@ Chose XOR-based design for subtraction over MUX array, resulting in 30% reductio
 
 ### Control Signal Encoding
 
-Implemented 4-bit FUNC[3:0] opcode with global inversion bit, enabling 16 operations efficiently.
+Implemented 5-bit FUNC[4:0] opcode with global inversion bit, enabling 19 implemented operations efficiently.
 

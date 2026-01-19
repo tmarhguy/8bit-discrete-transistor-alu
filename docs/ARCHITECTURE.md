@@ -1,6 +1,15 @@
+<!-- markdownlint-disable MD033 -->
+<div align="center">
+
 # System Architecture
 
+[![Transistors](https://img.shields.io/badge/3,488-Transistors-red?style=for-the-badge)](../meta/TRANSISTOR_COUNT_REPORT.md)
+[![Operations](https://img.shields.io/badge/19-Operations-blueviolet?style=for-the-badge)](../docs/OPCODE_TABLE.md)
+[![Status](https://img.shields.io/badge/Status-Simulation_Verified-success?style=for-the-badge)](../PPA.md)
+
 **Hardware architecture of the 8-bit discrete transistor ALU**
+
+</div>
 
 This document describes the complete hardware architecture from transistor-level gates to system integration.
 
@@ -29,7 +38,7 @@ This document describes the complete hardware architecture from transistor-level
 
 **Physical Implementation:**
 - **PCB Size:** 270mm × 270mm (10.6" × 10.6")
-- **Transistors:** 3,856+ discrete CMOS (2N7000 NMOS, BS250 PMOS)
+- **Transistors:** 3,488 CMOS (BSS138 NMOS, BSS84 PMOS)
 - **Technology:** 5V CMOS logic
 - **Glue Logic:** 74HC157 (MUX), minimal IC usage
 
@@ -648,26 +657,26 @@ See [POWER.md](POWER.md) for complete power analysis.
 
 | Gate | SPICE | Logisim | Hardware | Status |
 |------|-------|---------|----------|--------|
-| NOT | ✅ | ✅ | ✅ | Verified |
-| NAND | ✅ | ✅ | ✅ | Verified |
-| NOR | ✅ | ✅ | ✅ | Verified |
-| XOR | ✅ | ✅ | ✅ | Verified |
-| Full Adder | ✅ | ✅ | ✅ | Verified |
+| NOT |  |  |  | Verified |
+| NAND |  |  |  | Verified |
+| NOR |  |  |  | Verified |
+| XOR |  |  |  | Verified |
+| Full Adder |  |  |  | Verified |
 
 ### Subsystem Verification
 
 | Subsystem | Simulation | Hardware | Status |
 |-----------|------------|----------|--------|
-| Arithmetic Unit | ✅ 100% | 🔄 95% | Near complete |
-| Logic Unit | ✅ 100% | ✅ 100% | Complete |
-| Control Decoder | ✅ 100% | ✅ 100% | Complete |
-| Flag Generator | ✅ 100% | 🔄 90% | Near complete |
+| Arithmetic Unit |  100% |  95% | Near complete |
+| Logic Unit |  100% |  100% | Complete |
+| Control Decoder |  100% |  100% | Complete |
+| Flag Generator |  100% |  90% | Near complete |
 
 ### System Integration
 
-- ✅ Logisim: All 19 operations
-- ✅ Python: 1,900 test vectors (100% pass)
-- 🔄 Hardware: 18/19 operations verified
+-  Logisim: All 19 operations
+-  Python: 1,900 test vectors (100% pass)
+-  Hardware: 18/19 operations verified
 
 ---
 
@@ -678,7 +687,7 @@ See [POWER.md](POWER.md) for complete power analysis.
 1. **Pure combinational design** - No clock, immediate response
 2. **Modular structure** - Clear subsystem boundaries
 3. **Optimized transistor count** - XOR array, global inverter techniques
-4. **270mm × 270mm PCB** - Accommodates 3,856+ transistors
+4. **270mm × 270mm PCB** - Accommodates 3,488 transistors
 5. **Comprehensive verification** - SPICE, Logisim, Python, hardware
 
 ### Key Innovations
@@ -715,4 +724,4 @@ See [POWER.md](POWER.md) for complete power analysis.
 ---
 
 **Version:** 1.0  
-**Architecture:** Pure combinational, 270×270mm, 3,856+ transistors
+**Architecture:** Pure combinational, 270×270mm, 3,488 transistors

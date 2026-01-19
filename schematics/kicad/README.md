@@ -36,7 +36,7 @@ kicad/
 |-----------|-------|
 | **Board Size** | 270mm × 270mm (10.6" × 10.6") |
 | **Layers** | 2 (signal + ground) |
-| **Transistors** | 3,856+ discrete CMOS |
+| **Transistors** | 3,488 (Hybrid: Discrete + equivalent ICs) |
 | **Technology** | 5V logic, NMOS/PMOS pairs |
 | **Power** | 5V @ 0.5-1A |
 | **I/O** | 22 pins (8× A, 8× B, 5× FUNC, 1× GND) |
@@ -73,7 +73,7 @@ kicad/
    - ~68 transistors
 
 ![Main Logic Board](../../media/pcb/layouts/main_logic.png)
-*Figure 1 - Main ALU logic board: 270×270mm with 3,856+ transistors*
+*Figure 1 - Main ALU logic board: 270×270mm with 3,488 transistors (Hybrid)*
 
 **Evidence:** Physical PCB fabricated and assembled.
 
@@ -115,7 +115,7 @@ kicad/
 *Figure 2 - Complete main logic schematic*
 
 **Key Components:**
-- 640+ discrete transistors
+- 624 discrete transistors (plus 2,864 in ICs)
 - 74HC157 2:1 MUX (2×)
 - Power distribution network
 - I/O headers
@@ -250,7 +250,7 @@ KiCad → File → Fabrication Outputs → Gerbers
 - Surface finish: HASL lead-free
 - Silkscreen: White on green
 
-**Cost estimate:** ~$100 for 270×270mm board
+
 
 ---
 
@@ -259,7 +259,7 @@ KiCad → File → Fabrication Outputs → Gerbers
 ### Component Placement Order
 
 1. **Smallest first:** Resistors, capacitors (if SMD)
-2. **Transistors:** 3,856+ NMOS/PMOS pairs
+2. **Transistors:** 3,488 total (624 Discrete pairs + 74xx ICs + Support)
 3. **ICs:** 74HC157 multiplexers (use sockets)
 4. **Headers:** I/O connectors
 5. **LEDs:** Output indicators (last)
@@ -276,7 +276,7 @@ KiCad → File → Fabrication Outputs → Gerbers
 *Figure 9 - Component placement before soldering*
 
 ![Soldering Progress](../../media/photos/assembly/not_closeup_soldered_mosfets.jpg)
-*Figure 10 - Hand soldering 3,856+ transistors*
+*Figure 10 - Hand soldering transistors (Total count: 3,488)*
 
 **Evidence:** Assembly process documented step-by-step.
 
@@ -291,7 +291,7 @@ cd schematics/kicad/boards/main_logic
 kicad main_logic.kicad_pro
 ```
 
-**KiCad version:** 7.0 or later required
+**KiCad version:** 9.0.6 or later required
 
 ### Exporting
 
@@ -322,6 +322,6 @@ View → 3D Viewer → File → Export → STEP
 ---
 
 **Last Updated:** 2026-01-16  
-**KiCad Version:** 7.0+  
+**KiCad Version:** 9.0.6+  
 **Board Count:** 8 designs  
 **Status:** Fabrication-ready

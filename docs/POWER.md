@@ -1,6 +1,15 @@
+<!-- markdownlint-disable MD033 -->
+<div align="center">
+
 # Power & Transistor Analysis
 
-**Comprehensive breakdown of transistor count, power consumption, and resource utilization**
+[![Transistors](https://img.shields.io/badge/3,488-Transistors-red?style=for-the-badge)](../meta/TRANSISTOR_COUNT_REPORT.md)
+[![Power](https://img.shields.io/badge/2.5W-Power-yellow?style=for-the-badge)](../PPA.md)
+[![Status](https://img.shields.io/badge/Status-Simulation_Verified-success?style=for-the-badge)](../PPA.md)
+
+**Breakdown of transistor count, power consumption, and resource utilization**
+
+</div>
 
 This document provides detailed analysis of the ALU's transistor budget, power requirements, and performance characteristics.
 
@@ -8,7 +17,7 @@ This document provides detailed analysis of the ALU's transistor budget, power r
 
 ## Transistor Budget Summary
 
-**Total Discrete Transistors:** 3,856+
+**Total Discrete Transistors:** 3,488
 
 | Subsystem                 | Transistors | Percentage | Purpose                          |
 | ------------------------- | ----------- | ---------- | -------------------------------- |
@@ -17,7 +26,7 @@ This document provides detailed analysis of the ALU's transistor budget, power r
 | **2:1 MUX**         | 160T        | 4.1%       | Arithmetic/Logic selection       |
 | **Global Inverter** | 16T         | 0.4%       | Operation derivation             |
 | **Flag Generator**  | ~240T       | 6.2%       | LESS, EQUAL, POSITIVE, COUT      |
-| **Gate Arrays**     | ~2,588T     | 67.1%      | Distributed gate implementations |
+| **Gate Arrays**     | ~2,220T     | 67.1%      | Distributed gate implementations |
 | **Control Logic**   | ~68T        | 1.8%       | Opcode decoder                   |
 
 ---
@@ -198,7 +207,7 @@ POSITIVE = ~OUT[7] & (OUT[7] | OUT[6] | ... | OUT[0])
 
 ---
 
-## Gate Arrays (~2,588T)
+## Gate Arrays (~2,220T)
 
 ### Distributed Throughout Subsystems
 
@@ -227,8 +236,8 @@ The remaining ~2,588T are distributed as building blocks:
 | Flag Generator          | ~240T             | EQUAL (~100T) + LESS (~120T) + POSITIVE (~20T) |
 | Control Decoder         | ~68T              | FUNC[4:0] decode logic                         |
 | **Subtotal**      | **~1,268T** | Core functional blocks                         |
-| **Gate overhead** | ~2,588T           | Distributed gate implementations               |
-| **Total**         | **~3,856T** | Complete ALU                                   |
+| **Gate overhead** | ~2,220T           | Distributed gate implementations               |
+| **Total**         | **~3,488T** | Complete ALU                                   |
 
 **Note:** Gate overhead includes all the NAND/NOR/AND/OR/XOR gates that make up the functional blocks.
 
@@ -242,7 +251,7 @@ The remaining ~2,588T are distributed as building blocks:
 
 **Leakage current:** ~nA per transistor
 
-- 3,856T × 100nA ≈ 0.4mA
+- 3,488T × 100nA ≈ 0.4mA
 - Static power: 0.4mA × 5V = **~2mW** (negligible)
 
 ### Dynamic Power
@@ -259,9 +268,9 @@ Where:
 **Calculation @ 1MHz switching:**
 
 ```
-Total gates: ~3,856 / 4 ≈ 964 gates (average 4T per gate)
-Capacitance: 964 × 1nF = 964nF ≈ 1µF
-Power: 1µF × 25V² × 1MHz × 0.1 = 2.5W
+Total gates: ~3,488 / 4 ≈ 872 gates (average 4T per gate)
+Capacitance: 872 × 1nF = 872nF ≈ 0.87µF
+Power: 0.87µF × 25V² × 1MHz × 0.1 = 2.18W
 ```
 
 **Power consumption estimates:**
@@ -293,7 +302,7 @@ Power: 1µF × 25V² × 1MHz × 0.1 = 2.5W
 
 **Main ALU Board:** 270mm × 270mm = 72,900 mm²
 
-**Area per transistor:** 72,900 mm² / 3,856T ≈ **19 mm² per transistor**
+**Area per transistor:** 72,900 mm² / 3,488T ≈ **21 mm² per transistor**
 
 This includes:
 
@@ -306,24 +315,17 @@ This includes:
 
 | Component Type       | Quantity | Notes                             |
 | -------------------- | -------- | --------------------------------- |
-| Discrete transistors | 3,856+   | NMOS/PMOS pairs                   |
-| 74HC157 (2:1 MUX)    | 2        | 8-bit arithmetic/logic select     |
-| Resistors            | ~500     | Pull-ups, current limiting        |
+| CMOS Transistors      | 3,488    | BSS138/BSS84 Pairs                |
+| 74HC ICs            | ~46      | MUX and Logic support             |
+| Resistors            | ~500     | Input pull-downs, LED limiting    |
 | Capacitors           | ~50      | Decoupling (100nF per IC cluster) |
 | LEDs                 | ~32      | Output indicators (optional)      |
 | Headers              | ~20      | I/O connections                   |
 
 ### BOM Cost Estimate
 
-| Category         | Est. Cost                          | Notes                 |
-| ---------------- | ---------------------------------- | --------------------- |
-| Transistors      | $150 | Bulk purchase (~$0.04 each) |                       |
-| ICs (74HC)       | $10                                | Standard logic ICs    |
-| Resistors/Caps   | $20                                | Bulk passives         |
-| PCB (270×270mm) | $100                               | Large format, 2-layer |
-| LEDs/Headers     | $30                                | I/O components        |
-| Assembly         | $140                               | Labor (or DIY)        |
-| **Total**  | **~$450**                    | Complete ALU          |
+| Assembly         | TBD                                | Labor (or DIY)        |
+| **Total**  | **TBD**                    | Complete ALU          |
 
 See [build-notes/bom.md](build-notes/bom.md) for detailed bill of materials.
 
@@ -465,12 +467,11 @@ Total:                ~445ns (worst case)
 
 | Metric                      | This ALU          | 74HC ALU   | FPGA     | Modern CPU |
 | --------------------------- | ----------------- | ---------- | -------- | ---------- |
-| **Transistors**       | 3,856             | ~500       | ~100K    | ~50B       |
+| **Transistors**       | 3,488             | ~500       | ~100K    | ~50B       |
 | **Size**              | 270×270mm        | 20×7mm    | 15×15mm | 10×10mm   |
 | **Power**             | 2.5W              | 0.1W       | 0.5W     | 100W       |
 | **Speed**             | ~2.5MHz           | ~25MHz     | ~100MHz  | ~5GHz      |
-| **Cost**              | $450 | $5         | $50 | $500 |          |            |
-| **Educational Value** | **Highest** | Medium     | Medium   | Low        |
+| **Cost**              | TBD | $5         | $50 | $500 |          |            |
 
 **Key insight:** Discrete transistor implementation trades performance and cost for educational visibility.
 
@@ -487,8 +488,8 @@ Total:                ~445ns (worst case)
 | **Ripple vs CLA**       | 600T (CLA)            | 336T (Ripple) | **264T (44%)** |
 | **Total Optimizations** |                       |               | **456T saved** |
 
-**Without optimizations:** 3,856T + 456T = 4,312T
-**With optimizations:** 3,856T
+**Without optimizations:** 3,488T + 456T = 3,944T
+**With optimizations:** 3,488T
 **Overall savings:** 10.6%
 
 ### Performance vs. Transistor Trade-off
@@ -529,7 +530,7 @@ Total:                ~445ns (worst case)
 
 **Soldering:**
 
-- 3,856+ transistor placements
+- 3,488 transistor placements
 - ~500 resistors
 - ~50 capacitors
 - ~5 ICs
@@ -583,7 +584,7 @@ Total:                ~445ns (worst case)
 | Inverter        | 16T              | 32T               | 2× (linear)                   |
 | Flags           | 240T             | ~350T             | ~1.5× (comparator complexity) |
 | Control         | 68T              | 68T               | 1× (same opcodes)             |
-| **Total** | **3,856T** | **~7,000T** | **1.8× overall**        |
+| **Total** | **3,488T** | **~7,000T** | **1.8× overall**        |
 
 **PCB size:** Would require ~400mm × 400mm or multi-board
 
@@ -593,12 +594,12 @@ Total:                ~445ns (worst case)
 
 ### Resource Summary
 
-- **Transistors:** 3,856 discrete CMOS
+- **Transistors:** 3,488 discrete CMOS
 - **PCB:** 270mm × 270mm, 2-layer FR-4
 - **Power:** 2.5W typical @ 5V
 - **Current:** 500mA typical
 - **Delay:** 415ns (arithmetic), 100ns (logic)
-- **Cost:** ~$450 (materials + fabrication)
+- **Cost:** (Depends on sourcing)
 
 ### Efficiency Metrics
 
@@ -608,11 +609,11 @@ Total:                ~445ns (worst case)
 
 ### Design Quality
 
-- ✅ Optimized for transistor count
-- ✅ Adequate performance for demonstration
-- ✅ Manufacturable with standard PCB process
-- ✅ Power consumption manageable
-- ✅ Educational value maximized
+-  Optimized for transistor count
+-  Adequate performance for demonstration
+-  Manufacturable with standard PCB process
+-  Power consumption manageable
+-  Educational value maximized
 
 ---
 
@@ -634,5 +635,5 @@ Total:                ~445ns (worst case)
 ---
 
 **Version:** 1.0
-**Total Transistors:** 3,856+
+**Total Transistors:** 3,488
 **Power @ 1MHz:** ~2.5W

@@ -111,7 +111,7 @@ B = 3 = 00000011
 A + (~B + 1) = 00000101 + 11111101 = 00000010 = 2
 ```
 
-**Verification:** 5 - 3 = 2 ✓
+**Verification:** 5 - 3 = 2 
 
 ### Subtraction with Borrow
 

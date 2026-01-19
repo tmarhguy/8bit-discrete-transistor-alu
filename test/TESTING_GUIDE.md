@@ -294,11 +294,11 @@ test:
 ### Expected Output
 
 ```
-✅ All 1,900 parametrized tests
-✅ All manual unit tests
-✅ 100% pass rate
-✅ All flags verified
-✅ All operations validated
+ All 1,900 parametrized tests
+ All manual unit tests
+ 100% pass rate
+ All flags verified
+ All operations validated
 ```
 
 ### Performance
@@ -414,11 +414,11 @@ pytest test_alu.py --html=report.html --self-contained-html
 
 This testing framework provides:
 
-✅ **Industry-standard pytest compatibility**  
-✅ **1,900+ comprehensive tests**  
-✅ **Multiple ways to run (pytest, make, python)**  
-✅ **CI/CD ready**  
-✅ **Well-organized test structure**  
-✅ **100% test coverage**
+ **Industry-standard pytest compatibility**  
+ **1,900+ comprehensive tests**  
+ **Multiple ways to run (pytest, make, python)**  
+ **CI/CD ready**  
+ **Well-organized test structure**  
+ **100% test coverage**
 
 **Ready for production use!**

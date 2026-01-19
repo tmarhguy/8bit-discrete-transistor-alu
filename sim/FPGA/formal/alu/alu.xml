@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+<testsuite timestamp="2026-01-18T14:02:49" hostname="lev-14322.apn.wlan.private.upenn.edu" package="alu" id="0" name="default" tests="36" errors="0" failures="0" time="6" skipped="0">
+<properties>
+<property name="os" value="Darwin"/>
+<property name="expect" value="PASS"/>
+<property name="status" value="PASS"/>
+</properties>
+<testcase classname="default" name="build execution" time="0">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:100.17-100.42" time="0" type="ASSERT" location="alu_formal.sv:100.17-100.42" id="_witness_.check_assert_alu_formal_sv_100_94">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:108.17-108.40" time="0" type="ASSERT" location="alu_formal.sv:108.17-108.40" id="_witness_.check_assert_alu_formal_sv_108_96">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:111.22-111.41" time="0" type="ASSERT" location="alu_formal.sv:111.22-111.41" id="_witness_.check_assert_alu_formal_sv_111_99">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:35.9-35.42" time="0" type="ASSERT" location="alu_formal.sv:35.9-35.42" id="_witness_.check_assert_alu_formal_sv_35_4">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:36.9-36.38" time="0" type="ASSERT" location="alu_formal.sv:36.9-36.38" id="_witness_.check_assert_alu_formal_sv_36_7">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:39.9-39.34" time="0" type="ASSERT" location="alu_formal.sv:39.9-39.34" id="_witness_.check_assert_alu_formal_sv_39_9">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:40.9-40.32" time="0" type="ASSERT" location="alu_formal.sv:40.9-40.32" id="_witness_.check_assert_alu_formal_sv_40_12">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:41.9-41.33" time="0" type="ASSERT" location="alu_formal.sv:41.9-41.33" id="_witness_.check_assert_alu_formal_sv_41_15">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:47.17-47.68" time="0" type="ASSERT" location="alu_formal.sv:47.17-47.68" id="_witness_.check_assert_alu_formal_sv_47_18">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:51.17-51.40" time="0" type="ASSERT" location="alu_formal.sv:51.17-51.40" id="_witness_.check_assert_alu_formal_sv_51_21">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:55.17-55.45" time="0" type="ASSERT" location="alu_formal.sv:55.17-55.45" id="_witness_.check_assert_alu_formal_sv_55_24">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:58.17-58.63" time="0" type="ASSERT" location="alu_formal.sv:58.17-58.63" id="_witness_.check_assert_alu_formal_sv_58_27">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:61.17-61.43" time="0" type="ASSERT" location="alu_formal.sv:61.17-61.43" id="_witness_.check_assert_alu_formal_sv_61_30">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:63.17-63.65" time="0" type="ASSERT" location="alu_formal.sv:63.17-63.65" id="_witness_.check_assert_alu_formal_sv_63_33">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:68.17-68.61" time="0" type="ASSERT" location="alu_formal.sv:68.17-68.61" id="_witness_.check_assert_alu_formal_sv_68_36">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:71.17-71.41" time="0" type="ASSERT" location="alu_formal.sv:71.17-71.41" id="_witness_.check_assert_alu_formal_sv_71_39">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:72.17-72.41" time="0" type="ASSERT" location="alu_formal.sv:72.17-72.41" id="_witness_.check_assert_alu_formal_sv_72_42">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:75.17-75.60" time="0" type="ASSERT" location="alu_formal.sv:75.17-75.60" id="_witness_.check_assert_alu_formal_sv_75_44">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:76.17-76.41" time="0" type="ASSERT" location="alu_formal.sv:76.17-76.41" id="_witness_.check_assert_alu_formal_sv_76_47">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:80.20-80.45" time="0" type="ASSERT" location="alu_formal.sv:80.20-80.45" id="_witness_.check_assert_alu_formal_sv_80_49">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:81.20-81.45" time="0" type="ASSERT" location="alu_formal.sv:81.20-81.45" id="_witness_.check_assert_alu_formal_sv_81_52">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:82.20-82.45" time="0" type="ASSERT" location="alu_formal.sv:82.20-82.45" id="_witness_.check_assert_alu_formal_sv_82_55">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:83.20-83.46" time="0" type="ASSERT" location="alu_formal.sv:83.20-83.46" id="_witness_.check_assert_alu_formal_sv_83_58">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:84.20-84.46" time="0" type="ASSERT" location="alu_formal.sv:84.20-84.46" id="_witness_.check_assert_alu_formal_sv_84_62">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:85.20-85.46" time="0" type="ASSERT" location="alu_formal.sv:85.20-85.46" id="_witness_.check_assert_alu_formal_sv_85_66">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:88.20-88.40" time="0" type="ASSERT" location="alu_formal.sv:88.20-88.40" id="_witness_.check_assert_alu_formal_sv_88_70">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:89.20-89.40" time="0" type="ASSERT" location="alu_formal.sv:89.20-89.40" id="_witness_.check_assert_alu_formal_sv_89_73">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:90.20-90.39" time="0" type="ASSERT" location="alu_formal.sv:90.20-90.39" id="_witness_.check_assert_alu_formal_sv_90_76">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:91.20-91.39" time="0" type="ASSERT" location="alu_formal.sv:91.20-91.39" id="_witness_.check_assert_alu_formal_sv_91_78">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:93.17-93.42" time="0" type="ASSERT" location="alu_formal.sv:93.17-93.42" id="_witness_.check_assert_alu_formal_sv_93_80">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:94.17-94.42" time="0" type="ASSERT" location="alu_formal.sv:94.17-94.42" id="_witness_.check_assert_alu_formal_sv_94_82">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:95.17-95.42" time="0" type="ASSERT" location="alu_formal.sv:95.17-95.42" id="_witness_.check_assert_alu_formal_sv_95_84">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:96.17-96.42" time="0" type="ASSERT" location="alu_formal.sv:96.17-96.42" id="_witness_.check_assert_alu_formal_sv_96_86">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:97.17-97.42" time="0" type="ASSERT" location="alu_formal.sv:97.17-97.42" id="_witness_.check_assert_alu_formal_sv_97_88">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:98.17-98.42" time="0" type="ASSERT" location="alu_formal.sv:98.17-98.42" id="_witness_.check_assert_alu_formal_sv_98_90">
+</testcase>
+<testcase classname="default" name="Property ASSERT in alu_formal at alu_formal.sv:99.17-99.42" time="0" type="ASSERT" location="alu_formal.sv:99.17-99.42" id="_witness_.check_assert_alu_formal_sv_99_92">
+</testcase>
+<system-out>SBY 14:02:43 [alu] Removing directory '/Users/tmarhguy/cpu/sim/FPGA/formal/alu'.
+SBY 14:02:43 [alu] Copy '/Users/tmarhguy/cpu/sim/FPGA/formal/alu_formal.sv' to '/Users/tmarhguy/cpu/sim/FPGA/formal/alu/src/alu_formal.sv'.
+SBY 14:02:43 [alu] Copy '/Users/tmarhguy/cpu/sim/FPGA/formal/../src/ALU.sv' to '/Users/tmarhguy/cpu/sim/FPGA/formal/alu/src/ALU.sv'.
+SBY 14:02:43 [alu] engine_0: smtbmc z3
+SBY 14:02:43 [alu] base: starting process &quot;cd alu/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY 14:02:43 [alu] base: finished (returncode=0)
+SBY 14:02:43 [alu] prep: starting process &quot;cd alu/model; yosys -ql design_prep.log design_prep.ys&quot;
+SBY 14:02:43 [alu] prep: finished (returncode=0)
+SBY 14:02:43 [alu] smt2: starting process &quot;cd alu/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY 14:02:43 [alu] smt2: finished (returncode=0)
+SBY 14:02:43 [alu] engine_0.basecase: starting process &quot;cd alu; yosys-smtbmc -s z3 --presat --noprogress -t 20  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY 14:02:43 [alu] engine_0.induction: starting process &quot;cd alu; yosys-smtbmc -s z3 --presat -i --noprogress -t 20  --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-yw engine_0/trace_induct.yw --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY 14:02:43 [alu] engine_0.basecase: ##   0:00:00  Solver: z3
+SBY 14:02:43 [alu] engine_0.induction: ##   0:00:00  Solver: z3
+SBY 14:02:43 [alu] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY 14:02:43 [alu] engine_0.induction: ##   0:00:00  Trying induction in step 20..
+SBY 14:02:44 [alu] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY 14:02:44 [alu] engine_0.induction: ##   0:00:00  Temporal induction successful.
+SBY 14:02:44 [alu] engine_0.induction: ##   0:00:00  Status: passed
+SBY 14:02:44 [alu] engine_0.induction: finished (returncode=0)
+SBY 14:02:44 [alu] engine_0.induction: Status returned by engine for induction: pass
+SBY 14:02:44 [alu] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY 14:02:44 [alu] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY 14:02:44 [alu] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY 14:02:44 [alu] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY 14:02:44 [alu] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY 14:02:44 [alu] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY 14:02:45 [alu] engine_0.basecase: ##   0:00:01  Checking assumptions in step 4..
+SBY 14:02:45 [alu] engine_0.basecase: ##   0:00:01  Checking assertions in step 4..
+SBY 14:02:45 [alu] engine_0.basecase: ##   0:00:01  Checking assumptions in step 5..
+SBY 14:02:45 [alu] engine_0.basecase: ##   0:00:01  Checking assertions in step 5..
+SBY 14:02:45 [alu] engine_0.basecase: ##   0:00:01  Checking assumptions in step 6..
+SBY 14:02:45 [alu] engine_0.basecase: ##   0:00:01  Checking assertions in step 6..
+SBY 14:02:46 [alu] engine_0.basecase: ##   0:00:02  Checking assumptions in step 7..
+SBY 14:02:46 [alu] engine_0.basecase: ##   0:00:02  Checking assertions in step 7..
+SBY 14:02:46 [alu] engine_0.basecase: ##   0:00:02  Checking assumptions in step 8..
+SBY 14:02:46 [alu] engine_0.basecase: ##   0:00:02  Checking assertions in step 8..
+SBY 14:02:46 [alu] engine_0.basecase: ##   0:00:02  Checking assumptions in step 9..
+SBY 14:02:46 [alu] engine_0.basecase: ##   0:00:02  Checking assertions in step 9..
+SBY 14:02:46 [alu] engine_0.basecase: ##   0:00:02  Checking assumptions in step 10..
+SBY 14:02:46 [alu] engine_0.basecase: ##   0:00:02  Checking assertions in step 10..
+SBY 14:02:47 [alu] engine_0.basecase: ##   0:00:03  Checking assumptions in step 11..
+SBY 14:02:47 [alu] engine_0.basecase: ##   0:00:03  Checking assertions in step 11..
+SBY 14:02:47 [alu] engine_0.basecase: ##   0:00:03  Checking assumptions in step 12..
+SBY 14:02:47 [alu] engine_0.basecase: ##   0:00:03  Checking assertions in step 12..
+SBY 14:02:47 [alu] engine_0.basecase: ##   0:00:03  Checking assumptions in step 13..
+SBY 14:02:47 [alu] engine_0.basecase: ##   0:00:03  Checking assertions in step 13..
+SBY 14:02:47 [alu] engine_0.basecase: ##   0:00:03  Checking assumptions in step 14..
+SBY 14:02:47 [alu] engine_0.basecase: ##   0:00:03  Checking assertions in step 14..
+SBY 14:02:48 [alu] engine_0.basecase: ##   0:00:04  Checking assumptions in step 15..
+SBY 14:02:48 [alu] engine_0.basecase: ##   0:00:04  Checking assertions in step 15..
+SBY 14:02:48 [alu] engine_0.basecase: ##   0:00:04  Checking assumptions in step 16..
+SBY 14:02:48 [alu] engine_0.basecase: ##   0:00:04  Checking assertions in step 16..
+SBY 14:02:48 [alu] engine_0.basecase: ##   0:00:04  Checking assumptions in step 17..
+SBY 14:02:48 [alu] engine_0.basecase: ##   0:00:04  Checking assertions in step 17..
+SBY 14:02:49 [alu] engine_0.basecase: ##   0:00:05  Checking assumptions in step 18..
+SBY 14:02:49 [alu] engine_0.basecase: ##   0:00:05  Checking assertions in step 18..
+SBY 14:02:49 [alu] engine_0.basecase: ##   0:00:05  Checking assumptions in step 19..
+SBY 14:02:49 [alu] engine_0.basecase: ##   0:00:05  Checking assertions in step 19..
+SBY 14:02:49 [alu] engine_0.basecase: ##   0:00:05  Status: passed
+SBY 14:02:49 [alu] engine_0.basecase: finished (returncode=0)
+SBY 14:02:49 [alu] engine_0.basecase: Status returned by engine for basecase: pass
+SBY 14:02:49 [alu] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:06 (6)
+SBY 14:02:49 [alu] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:06 (6)
+SBY 14:02:49 [alu] summary: engine_0 (smtbmc z3) returned pass for basecase
+SBY 14:02:49 [alu] summary: engine_0 (smtbmc z3) returned pass for induction
+SBY 14:02:49 [alu] summary: engine_0 did not produce any traces
+SBY 14:02:49 [alu] summary: successful proof by k-induction.
+SBY 14:02:49 [alu] DONE (PASS, rc=0)
+</system-out>
+<system-err>
+</system-err>
+</testsuite>
+</testsuites>

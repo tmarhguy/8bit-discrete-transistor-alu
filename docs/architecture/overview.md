@@ -5,7 +5,7 @@
 ```
              A[7:0]   B[7:0]
                 |        |
-    FUNC[3:0]   |        |
+    FUNC[4:0]   |        |
        |        |        |
    +---v---+    |        |
    | Control   +----v---v----+     +-------------+
@@ -29,19 +29,19 @@
 
 ## Datapath
 
-**Datapath:** `A_reg (8b) → ALU (arith + logic + mux + global invert) → R_reg (8b)`
+**Datapath:** `A[7:0], B[7:0] → ALU Core (Arithmetic + Logic) → MUX → Global Invert → OUT[7:0]`
 
 ## Control Signals
 
-* **FUNC[3:0]**: 4-bit opcode (16 operations)
+* **FUNC[4:0]**: 5-bit opcode (19 implemented)
 * **INV_OUT**: Global post-mux inversion bit
 * **M**: ADD/SUB mode (0=ADD, 1=SUB)
-* **LOAD_A, LOAD_B, LOAD_R**: Register load enables
+* **MUX_SEL**: Selection between Arithmetic (0) and Logic (1) units
 
 ## I/O Architecture
 
-* **Front-end Arduino**: Keypad input → number entry + opcode selection
-* **Back-end Arduino**: Display/logging → reads R_reg and displays results
+* **Inputs**: Direct 8-bit parallel inputs for A and B
+* **Outputs**: Direct 8-bit parallel output for Result + 4 status flags
 
 ## Clocking
 

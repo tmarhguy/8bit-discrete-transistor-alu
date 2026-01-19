@@ -1,6 +1,15 @@
+<!-- markdownlint-disable MD033 -->
+<div align="center">
+
 # Complete Opcode Reference
 
+[![Operations](https://img.shields.io/badge/19-Operations-blueviolet?style=for-the-badge)](../docs/OPCODE_TABLE.md)
+[![Status](https://img.shields.io/badge/Status-Simulation_Verified-success?style=for-the-badge)](../PPA.md)
+[![Delay](https://img.shields.io/badge/400ns-Prop_Delay-blue?style=for-the-badge)](../PPA.md)
+
 **Detailed specification of all 19 ALU operations**
+
+</div>
 
 This document provides complete implementation details, truth tables, and examples for every opcode.
 
@@ -27,25 +36,25 @@ This document provides complete implementation details, truth tables, and exampl
 
 | Decimal | Binary | Mnemonic | Operation | Type | Flags | Implementation |
 |---------|--------|----------|-----------|------|-------|----------------|
-| **0** | 00000 | ADD | A + B | Arithmetic | ✓ | Direct adder |
-| **1** | 00001 | SUB | A - B | Arithmetic | ✓ | A + ~B + 1 |
-| **2** | 00010 | INC | A + 1 | Arithmetic | ✓ | A + 1 |
-| **3** | 00011 | DEC | A - 1 | Arithmetic | ✓ | A + ~0 + 1 |
-| **4** | 00100 | LSL | A << 1 | Shift | ✓ | Logical left |
-| **5** | 00101 | LSR | A >> 1 | Shift | ✓ | Logical right |
-| **6** | 00110 | ASR | A >> 1 | Shift | ✓ | Arithmetic right |
-| **7** | 00111 | REV | Reverse(A) | Special | ✓ | Bit reversal |
-| **8** | 01000 | NAND | ~(A & B) | Logic | ✓ | Base operation |
-| **9** | 01001 | NOR | ~(A \| B) | Logic | ✓ | Base operation |
-| **10** | 01010 | XOR | A ^ B | Logic | ✓ | Base operation |
-| **11** | 01011 | PASSA | A | Logic | ✓ | Pass through |
-| **12** | 01100 | PASSB | B | Logic | ✓ | Pass through |
-| **13** | 01101 | AND | A & B | Logic | ✓ | NAND + INV_OUT |
-| **14** | 01110 | OR | A \| B | Logic | ✓ | NOR + INV_OUT |
-| **15** | 01111 | XNOR | ~(A ^ B) | Logic | ✓ | XOR + INV_OUT |
-| **16** | 10000 | CMP | Compare | Special | ✓ | A - B (flags only) |
-| **17** | 10001 | NOTA | ~A | Logic | ✓ | PASSA + INV_OUT |
-| **18** | 10010 | NOTB | ~B | Logic | ✓ | PASSB + INV_OUT |
+| **0** | 00000 | ADD | A + B | Arithmetic |  | Direct adder |
+| **1** | 00001 | SUB | A - B | Arithmetic |  | A + ~B + 1 |
+| **2** | 00010 | INC | A + 1 | Arithmetic |  | A + 1 |
+| **3** | 00011 | DEC | A - 1 | Arithmetic |  | A + ~0 + 1 |
+| **4** | 00100 | LSL | A << 1 | Shift |  | Logical left |
+| **5** | 00101 | LSR | A >> 1 | Shift |  | Logical right |
+| **6** | 00110 | ASR | A >> 1 | Shift |  | Arithmetic right |
+| **7** | 00111 | REV | Reverse(A) | Special |  | Bit reversal |
+| **8** | 01000 | NAND | ~(A & B) | Logic |  | Base operation |
+| **9** | 01001 | NOR | ~(A \| B) | Logic |  | Base operation |
+| **10** | 01010 | XOR | A ^ B | Logic |  | Base operation |
+| **11** | 01011 | PASSA | A | Logic |  | Pass through |
+| **12** | 01100 | PASSB | B | Logic |  | Pass through |
+| **13** | 01101 | AND | A & B | Logic |  | NAND + INV_OUT |
+| **14** | 01110 | OR | A \| B | Logic |  | NOR + INV_OUT |
+| **15** | 01111 | XNOR | ~(A ^ B) | Logic |  | XOR + INV_OUT |
+| **16** | 10000 | CMP | Compare | Special |  | A - B (flags only) |
+| **17** | 10001 | NOTA | ~A | Logic |  | PASSA + INV_OUT |
+| **18** | 10010 | NOTB | ~B | Logic |  | PASSB + INV_OUT |
 | **19-31** | - | - | **Reserved** | - | - | Future use |
 
 ---

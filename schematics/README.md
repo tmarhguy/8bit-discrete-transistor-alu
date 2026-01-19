@@ -43,7 +43,7 @@ This directory contains:
 
 | Board | Purpose | Transistors | Size | Status |
 |-------|---------|-------------|------|--------|
-| **Main ALU** | Core ALU (arithmetic + logic) | 3,856+ | 270×270mm | Complete |
+| **Main ALU** | Core ALU (arithmetic + logic) | 3,488 | 270×270mm | Complete |
 | **Flags** | Flag generation (LESS, EQUAL, POSITIVE, COUT) | ~240 | Integrated | Complete |
 | **Control** | Opcode decoder & control signals | ~100 | Integrated | Complete |
 | **LED Panels** | 8-bit output displays | N/A | Separate | Complete |
@@ -328,7 +328,7 @@ See [ltspice/README.md](ltspice/README.md) for detailed simulation guide.
 - **Min trace/space:** 0.2mm / 0.2mm
 - **Min drill:** 0.3mm
 
-**Note:** Large format PCB required for 3,856+ discrete transistors
+**Note:** Large format PCB required for 3,488 transistors (Hybrid)
 
 ### Component Sourcing
 
@@ -344,9 +344,9 @@ See [ltspice/README.md](ltspice/README.md) for detailed simulation guide.
 See [docs/build-notes/bom.md](../docs/build-notes/bom.md) for complete BOM.
 
 **Key components:**
-- 3,856+ discrete transistors (NMOS + PMOS)
-- 74HC574 octal D flip-flops (3×)
-- 74HC157 quad 2-to-1 multiplexers (2×)
+- 3,488 transistors (Hybrid: Discrete + 74xx ICs)
+- 74HC157 quad 2-to-1 multiplexers (36×)
+- 74HC86 quad XOR gates (10×)
 - Resistors, capacitors, LEDs
 - Headers and connectors
 
@@ -476,8 +476,8 @@ See [docs/build-notes/bom.md](../docs/build-notes/bom.md) for complete BOM.
 ### Design Statistics
 
 - **Total boards:** 8 (1 main logic, 1 add/sub, 1 flags, 1 control, 4 LED panels)
-- **Total transistors:** 3,856+
-- **Total ICs:** 5× 74HC series
+- **Total transistors:** 3,488 (Hybrid)
+- **Total ICs:** ~50x 74HC series (including 36x Mux, 10x XOR)
 - **PCB area:** ~1,200 cm² total
 - **Design time:** ~4 weeks
 - **Fabrication time:** 1-2 weeks

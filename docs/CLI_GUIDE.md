@@ -50,7 +50,7 @@ chmod +x alu_cli.py
 
 ```bash
 # Clone the repository
-git clone https://github.com/tmarhguy/cpu.git
+git clone https://github.com/tmarhguy/8bit-discrete-transistor-alu.git
 cd cpu
 
 # Make CLI executable
@@ -578,7 +578,7 @@ For high-throughput testing, use the batch test suite instead.
 
 **Questions or issues?**
 
-- Open an issue: [github.com/tmarhguy/cpu/issues](https://github.com/tmarhguy/cpu/issues)
+- Open an issue: [github.com/tmarhguy/8bit-discrete-transistor-alu/issues](https://github.com/tmarhguy/8bit-discrete-transistor-alu/issues)
 - Email: tmarhguy@gmail.com | tmarhguy@seas.upenn.edu
 - Twitter: [@marhguy_tyrone](https://twitter.com/marhguy_tyrone)
 - Instagram: [@tmarhguy](https://instagram.com/tmarhguy)

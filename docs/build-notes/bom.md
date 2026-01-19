@@ -14,7 +14,7 @@
 
 ### ALU Core
 * Discrete transistors for ALU (NMOS/PMOS pairs)
-  - Quantity depends on implementation (see transistor cost analysis)
+  - Quantity depends on implementation (see transistor count analysis)
 
 ### Power & Decoupling
 * 100 nF ceramic capacitors (one per IC)

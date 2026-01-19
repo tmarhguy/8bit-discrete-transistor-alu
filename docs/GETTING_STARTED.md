@@ -1,6 +1,13 @@
+<!-- markdownlint-disable MD033 MD041 -->
+<div align="center">
+
 # Getting Started
 
-**Complete setup and build guide for the 8-Bit Transistor CPU**
+[![Status](https://img.shields.io/badge/Status-Simulation_Verified-success?style=for-the-badge)](../PPA.md)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](../LICENSE)
+> **Complete setup and build guide for the 8-Bit Transistor CPU**
+
+</div>
 
 This guide walks you through setting up your development environment, understanding the build process, and running your first simulations and tests.
 
@@ -24,14 +31,14 @@ This guide walks you through setting up your development environment, understand
 
 ### Software Requirements
 
-| Tool | Version | Purpose | Download |
-|------|---------|---------|----------|
-| **Logisim Evolution** | Latest | Digital logic simulation | [GitHub](https://github.com/logisim-evolution/logisim-evolution) |
-| **KiCad** | 7.0+ | PCB design & schematic capture | [kicad.org](https://www.kicad.org/) |
-| **ngspice** | 40+ | SPICE circuit simulation | [ngspice.org](http://ngspice.sourceforge.net/) |
-| **Python** | 3.7+ | Test automation | [python.org](https://www.python.org/) |
-| **Arduino IDE** | 2.0+ | Firmware development | [arduino.cc](https://www.arduino.cc/) |
-| **Git** | Latest | Version control | [git-scm.com](https://git-scm.com/) |
+| Tool                  | Version | Purpose                        | Download                                                         |
+| --------------------- | ------- | ------------------------------ | ---------------------------------------------------------------- |
+| **Logisim Evolution** | Latest  | Digital logic simulation       | [GitHub](https://github.com/logisim-evolution/logisim-evolution) |
+| **KiCad**             | 9.0.6+  | PCB design & schematic capture | [kicad.org](https://www.kicad.org/)                              |
+| **ngspice**           | 40+     | SPICE circuit simulation       | [ngspice.org](http://ngspice.sourceforge.net/)                   |
+| **Python**            | 3.7+    | Test automation                | [python.org](https://www.python.org/)                            |
+| **Arduino IDE**       | 2.0+    | Firmware development           | [arduino.cc](https://www.arduino.cc/)                            |
+| **Git**               | Latest  | Version control                | [git-scm.com](https://git-scm.com/)                              |
 
 ### Hardware Requirements (for physical build)
 
@@ -52,16 +59,18 @@ This guide walks you through setting up your development environment, understand
 
 ## Quick Start
 
+
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/tmarhguy/cpu.git
+git clone https://github.com/tmarhguy/8bit-discrete-transistor-alu.git
 cd cpu
 ```
 
 ### 2. Run Tests (No Installation Required)
 
 **Quick Test (1,900 tests):**
+
 ```bash
 # Quick test - no dependencies needed
 ./run_tests.sh
@@ -71,22 +80,45 @@ python3 test/test_alu.py
 ```
 
 **Exhaustive Test (1,247,084 tests):**
+
 ```bash
 # Run all test vectors (including exhaustive)
 ./run_tests.sh exhaustive
 ```
 
 **Expected output (Quick):**
-```
+
+```text
 Results: 1900 passed, 0 failed out of 1900 total
 Success Rate: 100.0%
 ```
 
 **Expected output (Exhaustive):**
-```
-Summary: 1247084 passed, 0 failed
-Success Rate: 100.0%
-Per-operation: 65,636 tests × 19 operations = 1,247,084 total
+
+```text
+================================================================================
+                       ALU TEST EXECUTION (Golden Model)                        
+================================================================================
+
+Testing File: exhaustive.json
+Loading exhaustive.json... Done!   
+Executing 1,245,184 tests...
+Progress: 100.0% | 1,245,184/1,245,184
+Opcode     | Operation  | Tests      | Passed     | Failed     | Status
+-----------+------------+------------+------------+------------+----------
+00000      | ADD        | 65,536     | 65,536     | 0          | PASS
+00001      | SUB        | 65,536     | 65,536     | 0          | PASS
+...
+10010      | NOT_B      | 65,536     | 65,536     | 0          | PASS
+
+
+================================================================================
+                                 FINAL SUMMARY                                  
+================================================================================
+Total Tests Run: 1,247,084
+Passed:          1,247,084 (100.0%)
+Failed:          0
+================================================================================
 ```
 
 ![Test Results](../media/test_passed.png)
@@ -129,7 +161,7 @@ brew install --cask kicad
 brew install --cask arduino
 
 # Clone the repository
-git clone https://github.com/tmarhguy/cpu.git
+git clone https://github.com/tmarhguy/8bit-discrete-transistor-alu.git
 cd cpu
 
 # Run tests to verify setup
@@ -146,7 +178,7 @@ sudo apt update
 sudo apt install -y python3 python3-pip ngspice git
 
 # Install KiCad
-sudo add-apt-repository ppa:kicad/kicad-7.0-releases
+sudo add-apt-repository ppa:kicad/kicad-9.0-releases
 sudo apt update
 sudo apt install kicad
 
@@ -155,7 +187,7 @@ wget https://downloads.arduino.cc/arduino-ide/arduino-ide_latest_Linux_64bit.App
 chmod +x arduino-ide_latest_Linux_64bit.AppImage
 
 # Clone the repository
-git clone https://github.com/tmarhguy/cpu.git
+git clone https://github.com/tmarhguy/8bit-discrete-transistor-alu.git
 cd cpu
 
 # Run tests
@@ -175,7 +207,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 choco install python3 git kicad arduino -y
 
 # Clone the repository
-git clone https://github.com/tmarhguy/cpu.git
+git clone https://github.com/tmarhguy/8bit-discrete-transistor-alu.git
 cd cpu
 
 # Run tests
@@ -196,9 +228,10 @@ The project follows an 8-phase development process, from transistor-level design
 *Phase 1: Transistor-level gate design*
 
 **Key activities:**
+
 - NMOS/PMOS transistor selection
 - CMOS logic gate design
-- Transistor cost analysis
+- Transistor count analysis
 - Layout planning
 
 **Tools:** Electric VLSI, paper sketches
@@ -215,6 +248,7 @@ The project follows an 8-phase development process, from transistor-level design
 *Phase 2: Schematic design in KiCad*
 
 **Key activities:**
+
 - Gate-level schematic entry
 - Hierarchical design (gates → adders → ALU)
 - Symbol creation
@@ -234,6 +268,7 @@ The project follows an 8-phase development process, from transistor-level design
 *Phase 3: SPICE and Logisim simulation*
 
 **Key activities:**
+
 - ngspice transistor-level simulation
 - Logisim functional simulation
 - Test vector generation
@@ -256,6 +291,7 @@ The project follows an 8-phase development process, from transistor-level design
 *Phase 4: PCB layout and routing*
 
 **Key activities:**
+
 - Component footprint assignment
 - PCB layout planning
 - Trace routing
@@ -500,11 +536,13 @@ Before starting hardware assembly, verify you have:
 ### Assembly Steps
 
 **1. Inspect PCBs:**
+
 - Check for manufacturing defects
 - Verify silkscreen and component labels
 - Test for shorts between power and ground
 
 **2. Solder components (smallest to largest):**
+
 - SMD resistors and capacitors (if any)
 - Transistors (MOSFETs)
 - IC sockets (recommended) or ICs directly
@@ -512,22 +550,26 @@ Before starting hardware assembly, verify you have:
 - LEDs and displays
 
 **3. Visual inspection:**
+
 - Check all solder joints
 - Look for bridges or cold joints
 - Verify component orientation (especially ICs and transistors)
 
 **4. Continuity testing:**
+
 - Test power rails (no shorts)
 - Verify critical connections
 - Check ground continuity
 
 **5. Power-on test:**
+
 - Apply 5V power
 - Measure voltages at key points
 - Check for excessive current draw
 - Look for hot components
 
 **6. Functional testing:**
+
 - Test individual gates
 - Test adder circuits
 - Test complete ALU operations
@@ -562,6 +604,7 @@ cd miscellaneous/firmware/controller-display
 **Problem:** Logisim circuit doesn't simulate correctly
 
 **Solutions:**
+
 - Check for disconnected wires (red dots)
 - Verify all inputs are driven
 - Check clock signal is toggling
@@ -570,6 +613,7 @@ cd miscellaneous/firmware/controller-display
 **Problem:** ngspice simulation fails
 
 **Solutions:**
+
 - Check .cir file syntax
 - Verify MOSFET models are loaded
 - Check for missing ground node
@@ -580,6 +624,7 @@ cd miscellaneous/firmware/controller-display
 **Problem:** Tests fail with incorrect results
 
 **Solutions:**
+
 - Verify Python version (3.7+)
 - Check test vectors are loading correctly
 - Review ALU implementation logic
@@ -588,6 +633,7 @@ cd miscellaneous/firmware/controller-display
 **Problem:** "Module not found" errors
 
 **Solutions:**
+
 - Tests run standalone without dependencies
 - Use `python3 test/test_alu.py` instead of pytest
 - Check you're in project root directory
@@ -597,6 +643,7 @@ cd miscellaneous/firmware/controller-display
 **Problem:** No power / board doesn't turn on
 
 **Solutions:**
+
 - Check power supply voltage (should be 5V)
 - Verify power connections
 - Test for shorts between VCC and GND
@@ -605,6 +652,7 @@ cd miscellaneous/firmware/controller-display
 **Problem:** Incorrect logic levels
 
 **Solutions:**
+
 - Verify component values (resistors)
 - Check transistor orientation
 - Test individual gates with multimeter
@@ -613,6 +661,7 @@ cd miscellaneous/firmware/controller-display
 **Problem:** Intermittent operation
 
 **Solutions:**
+
 - Check solder joints (reflow if needed)
 - Verify all connections
 - Check for loose wires
@@ -621,10 +670,11 @@ cd miscellaneous/firmware/controller-display
 **Problem:** Gates not switching
 
 **Solutions:**
+
 - Verify transistor part numbers
 - Check gate drive voltages
 - Test transistors individually
-- Verify pull-up/pull-down resistors
+- Verify resistors (LED current limiting, input pull-downs)
 
 ---
 
@@ -668,8 +718,8 @@ cd miscellaneous/firmware/controller-display
 
 ### Community
 
-- **Issues:** [GitHub Issues](https://github.com/tmarhguy/cpu/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/tmarhguy/cpu/discussions)
+- **Issues:** [GitHub Issues](https://github.com/tmarhguy/8bit-discrete-transistor-alu/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/tmarhguy/8bit-discrete-transistor-alu/discussions)
 - **Contributing:** See [CONTRIBUTING.md](../CONTRIBUTING.md)
 
 ---

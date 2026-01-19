@@ -1,6 +1,14 @@
+<!-- markdownlint-disable MD033 -->
+<div align="center">
+
 # Contributing to 8-Bit Transistor CPU
 
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](../LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)](../PPA.md)
+
 Thank you for your interest in contributing to this project! This document provides guidelines for contributing to the 8-Bit Transistor CPU project.
+
+</div>
 
 ---
 
@@ -61,7 +69,7 @@ git clone https://github.com/YOUR_USERNAME/cpu.git
 cd cpu
 
 # Add upstream remote
-git remote add upstream https://github.com/tmarhguy/cpu.git
+git remote add upstream https://github.com/tmarhguy/8bit-discrete-transistor-alu.git
 
 # Create a development branch
 git checkout -b feature/your-feature-name
@@ -114,7 +122,7 @@ We welcome contributions in several areas:
 
 ### 1. Find or Create an Issue
 
-- Check existing [issues](https://github.com/tmarhguy/cpu/issues)
+- Check existing [issues](https://github.com/tmarhguy/8bit-discrete-transistor-alu/issues)
 - Comment on an issue to claim it
 - Or create a new issue describing your contribution
 
@@ -176,7 +184,7 @@ git commit -m "feat: add carry-lookahead adder optimization
 
 Use [Conventional Commits](https://www.conventionalcommits.org/):
 
-```
+```text
 <type>(<scope>): <subject>
 
 <body>
@@ -185,6 +193,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 
 **Types:**
+
 - `feat:` - New feature
 - `fix:` - Bug fix
 - `docs:` - Documentation changes
@@ -311,7 +320,7 @@ def execute_alu_operation(opcode: str, a: int, b: int) -> tuple[int, dict]:
 
 ## Testing Requirements
 
-### All Contributions Must:
+### Requirements
 
 1. **Pass existing tests:**
    ```bash
@@ -454,29 +463,29 @@ Closes #123
 
 ### Medium Priority
 
-4. **Documentation:**
+1. **Documentation:**
    - Video tutorials
    - Build guide improvements
    - Troubleshooting expansion
 
-5. **Optimization:**
+2. **Optimization:**
    - Transistor count reduction
    - Power consumption optimization
    - Layout improvements
 
-6. **Tooling:**
+3. **Tooling:**
    - Automated testing scripts
    - PCB generation tools
    - BOM management
 
 ### Low Priority
 
-7. **Extended Features:**
+1. **Extended Features:**
    - 16-bit ALU variant
    - Pipelining
    - Additional flags
 
-8. **Alternative Implementations:**
+2. **Alternative Implementations:**
    - FPGA port
    - ASIC design
    - Different logic families
@@ -488,9 +497,9 @@ Closes #123
 ### Getting Help
 
 - **Documentation:** Check [docs/](docs/) directory
-- **Issues:** Search [existing issues](https://github.com/tmarhguy/cpu/issues)
-- **Discussions:** Use [GitHub Discussions](https://github.com/tmarhguy/cpu/discussions)
-- **Email:** tmarhguy@gmail.com | tmarhguy@seas.upenn.edu
+- **Issues:** Search [existing issues](https://github.com/tmarhguy/8bit-discrete-transistor-alu/issues)
+- **Discussions:** Use [GitHub Discussions](https://github.com/tmarhguy/8bit-discrete-transistor-alu/discussions)
+- **Email:** <tmarhguy@gmail.com> | <tmarhguy@seas.upenn.edu>
 - **Twitter:** [@marhguy_tyrone](https://twitter.com/marhguy_tyrone)
 - **Instagram:** [@tmarhguy](https://instagram.com/tmarhguy)
 - **Substack:** [@tmarhguy](https://tmarhguy.substack.com)
@@ -515,7 +524,7 @@ Thank you for contributing to the 8-Bit Transistor CPU project!
 
 ---
 
-## 👨‍💻 Project Maintainer
+## ‍ Project Maintainer
 
 **Tyrone Marhguy**  
 Sophomore, Computer Engineering  
@@ -524,16 +533,14 @@ Expected Graduation: May 2028
 
 ### Connect with Me
 
-- 🌐 [tmarhguy.com](https://tmarhguy.com)
-- 📧 tmarhguy@gmail.com | tmarhguy@seas.upenn.edu
-- 💼 [LinkedIn](https://linkedin.com/in/tmarhguy)
-- 🐦 [Twitter](https://twitter.com/marhguy_tyrone)
-- 📷 [Instagram](https://instagram.com/tmarhguy)
-- 📝 [Substack](https://tmarhguy.substack.com)
-- 🐦 [Twitter: @marhguy_tyrone](https://twitter.com/marhguy_tyrone)
-- 📸 [Instagram: @tmarhguy](https://instagram.com/tmarhguy)
-
+- [tmarhguy.com](https://tmarhguy.com)
+- <tmarhguy@gmail.com> | <tmarhguy@seas.upenn.edu>
+- [LinkedIn](https://linkedin.com/in/tmarhguy)
+- [Twitter](https://twitter.com/marhguy_tyrone)
+- [Instagram](https://instagram.com/tmarhguy)
+- [Substack](https://tmarhguy.substack.com)
 ---
 
-**Last Updated:** 2026-01-16  
-**Version:** 1.0
+**Last Updated:** 2026-01-19  
+**Version:** 1.1
+

@@ -9,7 +9,7 @@
 | Parameter | Value |
 |-----------|-------|
 | **Board Size** | 270mm × 270mm (10.6" × 10.6") |
-| **Transistor Count** | 3,856+ discrete CMOS |
+| **Transistor Count** | 3,488 (Hybrid: Discrete + equivalent ICs) |
 | **Architecture** | Pure combinational (no clock) |
 | **Layers** | 2 (top signal/power, bottom ground) |
 | **Power** | 5V @ 0.5-1A |
@@ -131,15 +131,15 @@ OUT: M, MUX_SEL, INV_OUT, LOGIC_SEL[2:0]
 - **Min trace/space:** 0.2mm/0.2mm
 - **Surface finish:** HASL lead-free
 
-**Cost:** ~$100 (large format premium)
+
 
 ### Assembly
 
 **Component count:**
-- 3,856+ transistors (NMOS/PMOS pairs)
+- 3,488 transistors (624 Discrete + 2,864 in ICs + Support)
 - ~500 resistors (10kΩ pull-ups, 220Ω current limiting)
 - ~50 capacitors (100nF decoupling)
-- 2× 74HC157 ICs
+- 36x 74HC157 + 10x 74HC86 ICs
 - Headers, test points
 
 **Estimated assembly time:** 50-70 hours (hand soldering)

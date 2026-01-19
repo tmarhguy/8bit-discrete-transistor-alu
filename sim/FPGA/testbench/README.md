@@ -56,10 +56,10 @@ Check the console output for test results:
 
 ## Test Coverage
 
-- ✅ All 19 operations
-- ✅ Flag generation (Carry, Zero, Negative, Comparison)
-- ✅ Edge cases (overflow, underflow, zero)
-- ✅ 30+ test cases
+-  All 19 operations
+-  Flag generation (Carry, Zero, Negative, Comparison)
+-  Edge cases (overflow, underflow, zero)
+-  30+ test cases
 
 ---
 
@@ -71,6 +71,6 @@ See [Testing Guide](../docs/TESTING.md) for detailed testing procedures and debu
 
 ## Status
 
-- ✅ Testbench complete
-- ✅ All operations tested
-- ✅ Ready for regression testing
+-  Testbench complete
+-  All operations tested
+-  Ready for regression testing

@@ -4,7 +4,7 @@
 
 ---
 
-## 🎯 Current Situation
+##  Current Situation
 
 ### What You Have Now
 
@@ -22,7 +22,7 @@
 
 ---
 
-## 🧭 Understanding the Two Flag Systems
+##  Understanding the Two Flag Systems
 
 ### System 1: Comparison Flags (What you have)
 
@@ -84,15 +84,15 @@ AND 0xFF, 0x00:
 
 ---
 
-## 🎨 The Big Picture: Two Approaches
+##  The Big Picture: Two Approaches
 
 ### Option 1: Keep Both Systems (Recommended)
 
 **Pros:**
-- ✅ Comparison flags already work
-- ✅ No need to change existing hardware
-- ✅ Add standard flags alongside
-- ✅ More complete ALU
+-  Comparison flags already work
+-  No need to change existing hardware
+-  Add standard flags alongside
+-  More complete ALU
 
 **Cons:**
 - More outputs (but EQUAL = ZERO, so really 6 unique flags)
@@ -124,14 +124,14 @@ Standard Flags (add these):
 ### Option 2: Replace with Standard Flags Only
 
 **Pros:**
-- ✅ Industry-standard interface
-- ✅ Simpler (4 flags total)
-- ✅ Matches textbook ALUs
+-  Industry-standard interface
+-  Simpler (4 flags total)
+-  Matches textbook ALUs
 
 **Cons:**
-- ❌ Lose comparison-specific flags
-- ❌ Need to derive LESS/EQUAL from Z/N/C/V
-- ❌ More rework
+-  Lose comparison-specific flags
+-  Need to derive LESS/EQUAL from Z/N/C/V
+-  More rework
 
 **Flag outputs:**
 ```
@@ -149,14 +149,14 @@ Derive comparisons:
 
 ---
 
-## 🛠️ Implementation Roadmap (No Pressure!)
+## ️ Implementation Roadmap (No Pressure!)
 
 ### Phase 1: Understand What You Need (1 day)
 
 **Goal:** Clarify requirements
 
 **Tasks:**
-1. ✅ Read this document
+1.  Read this document
 2. Decide: Keep both systems or replace?
 3. Sketch flag generation logic on paper
 4. Review existing flag hardware
@@ -313,10 +313,10 @@ Create a small addon PCB:
 - Transistors: ~80T total
 
 **Pros:**
-- ✅ Don't modify main board
-- ✅ Can test independently
-- ✅ Easy to debug
-- ✅ Modular design
+-  Don't modify main board
+-  Can test independently
+-  Easy to debug
+-  Modular design
 
 **Option B: Modify Main Board**
 
@@ -326,12 +326,12 @@ Add flag logic to existing PCB:
 - Add ~80 transistors
 
 **Pros:**
-- ✅ Integrated solution
-- ✅ No extra boards
+-  Integrated solution
+-  No extra boards
 
 **Cons:**
-- ❌ Harder to modify
-- ❌ Risk breaking existing circuits
+-  Harder to modify
+-  Risk breaking existing circuits
 
 ---
 
@@ -363,17 +363,17 @@ Add flag logic to existing PCB:
 
 ---
 
-## 📊 Transistor Budget
+##  Transistor Budget
 
 | Flag | Transistors | Complexity | Priority | Status |
 |------|-------------|------------|----------|--------|
-| **Zero (Z)** | 0T | N/A | High | ✅ Already have as EQUAL! |
-| **Negative (N)** | ~2T | Very Low | High | ❌ Need to add |
-| **Carry (C)** | 0T | N/A | High | ✅ Already have as COUT! |
-| **Overflow (V)** | ~20T | Medium | Medium | ❌ Need to add |
+| **Zero (Z)** | 0T | N/A | High |  Already have as EQUAL! |
+| **Negative (N)** | ~2T | Very Low | High |  Need to add |
+| **Carry (C)** | 0T | N/A | High |  Already have as COUT! |
+| **Overflow (V)** | ~20T | Medium | Medium |  Need to add |
 | **Total** | **~22T** | | | |
 
-**Impact:** Only +22T (0.6% increase from 3,856T) - Much less than expected!  
+**Impact:** Only +22T (0.6% increase from 3,488T) - Much less than expected!  
 **Board space:** ~5×5mm  
 **Assembly time:** ~30 minutes
 
@@ -381,7 +381,7 @@ Add flag logic to existing PCB:
 
 ---
 
-## 🎯 Recommended Approach
+##  Recommended Approach
 
 ### My Suggestion: Incremental Addition
 
@@ -407,7 +407,7 @@ Add flag logic to existing PCB:
 
 ---
 
-## 🧪 Testing Strategy
+##  Testing Strategy
 
 ### Software Testing (Do this first!)
 
@@ -441,7 +441,7 @@ Add flag logic to existing PCB:
 
 ---
 
-## 💡 Practical Examples
+##  Practical Examples
 
 ### Example 1: Zero Flag in Action
 
@@ -490,25 +490,25 @@ Use case: Detect signed overflow (127 is max positive 8-bit signed)
 
 ---
 
-## 🚫 What NOT to Do
+##  What NOT to Do
 
 ### Don't:
-- ❌ Rush to modify hardware immediately
-- ❌ Change everything at once
-- ❌ Skip software simulation
-- ❌ Remove existing flags that work
-- ❌ Feel pressured to finish quickly
+-  Rush to modify hardware immediately
+-  Change everything at once
+-  Skip software simulation
+-  Remove existing flags that work
+-  Feel pressured to finish quickly
 
 ### Do:
-- ✅ Take your time
-- ✅ Test in software first
-- ✅ Build incrementally
-- ✅ Keep existing flags
-- ✅ Document as you go
+-  Take your time
+-  Test in software first
+-  Build incrementally
+-  Keep existing flags
+-  Document as you go
 
 ---
 
-## 📚 Reference: Flag Truth Tables
+##  Reference: Flag Truth Tables
 
 ### Zero Flag
 
@@ -548,7 +548,7 @@ Use case: Detect signed overflow (127 is max positive 8-bit signed)
 
 ---
 
-## 🎓 Learning Resources
+##  Learning Resources
 
 ### Understanding Flags
 
@@ -565,7 +565,7 @@ Use case: Detect signed overflow (127 is max positive 8-bit signed)
 
 ---
 
-## 💡 Key Insight: You're Closer Than You Think!
+##  Key Insight: You're Closer Than You Think!
 
 **The Big Revelation:**
 
@@ -586,10 +586,10 @@ When comparing A and B:
 ```
 
 **What this means:**
-- ✅ Zero flag: Already working (it's your EQUAL flag)
-- ✅ Carry flag: Already working (it's your COUT flag)
-- ❌ Negative flag: Need to add (~2 transistors)
-- ❌ Overflow flag: Need to add (~20 transistors)
+-  Zero flag: Already working (it's your EQUAL flag)
+-  Carry flag: Already working (it's your COUT flag)
+-  Negative flag: Need to add (~2 transistors)
+-  Overflow flag: Need to add (~20 transistors)
 
 **You only need to add 2 flags, not 4!**
 
@@ -598,7 +598,7 @@ When comparing A and B:
 
 ---
 
-## 🎯 Summary: Your Path Forward
+##  Summary: Your Path Forward
 
 ### Immediate (This Week)
 1. Read this document thoroughly
@@ -626,7 +626,7 @@ When comparing A and B:
 
 ---
 
-## 💬 Final Advice
+##  Final Advice
 
 **Take your time.** Your ALU is already 95% complete and working. Adding comprehensive flags is an **enhancement**, not a requirement.
 
@@ -640,7 +640,7 @@ When comparing A and B:
 
 ---
 
-## 📞 Questions?
+##  Questions?
 
 **Stuck on flag logic?** Check `spec/README.md` lines 321-367  
 **Need circuit help?** Review existing flag hardware in `schematics/kicad/`  
@@ -651,7 +651,7 @@ Twitter: [@marhguy_tyrone](https://twitter.com/marhguy_tyrone) | Instagram: [@tm
 
 ---
 
-**Remember:** Your ALU already works. Flags are just the cherry on top! 🎂
+**Remember:** Your ALU already works. Flags are just the cherry on top! 
 
 **Document Version:** 1.0  
 **Last Updated:** January 2026  

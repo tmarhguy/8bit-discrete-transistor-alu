@@ -72,7 +72,7 @@ media/
 
 ---
 
-## 🎯 Key Files
+##  Key Files
 
 ### Design Phase
 
@@ -232,7 +232,7 @@ media/
 
 ---
 
-## 🔧 Maintenance
+##  Maintenance
 
 ### Adding New Files
 
@@ -285,7 +285,7 @@ When adding new key media files, update:
 
 ---
 
-## 🗑️ Deprecated Files
+##  Deprecated Files
 
 **Old folder structure (removed):**
 - `pcb photos/` → merged into `pcb/layouts/`

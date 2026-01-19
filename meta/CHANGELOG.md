@@ -7,19 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased]
+## [1.1.0] - 2026-01-19
 
-### Planned
+### Added
+- Comprehensive verification for all 19 ALU operations (100% verified).
+- Detail on BSS84 (PMOS) and BSS138 (NMOS) transistor usage for logic gates.
+- Simplified README design standards (removed emojis for professional aesthetic).
 
-- Carry-lookahead adder implementation
-- Complete hardware testing of REV A operation
-- Performance characterization (timing, power)
-- Video tutorials and build guides
-- FPGA implementation
+### Changed
+- Streamlined CI pipeline: Removed redundant Arduino checks to focus on core ALU verification.
+- Optimized `run_exhaustive_tests.py`: Removed redundant terminal output for cleaner logs.
+- Standardized documentation across all subdirectories.
+
+### Fixed
+- Corrected transistor count across all files to reflect verified 3,488 total.
+- Fixed schema validation issues in GitHub Actions CI.
+- Updated broken video links and media references in documentation.
 
 ---
 
 ## [1.0.0] - 2026-01-16
+
 
 ### Added - Initial Release
 
@@ -27,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Complete 8-bit ALU with 19 operations (5-bit opcode, 32 possible)
 - **Pure combinational circuit** - no clock required
-- 3,856+ discrete transistor implementation
+- 3,488 discrete transistor implementation
 - **270mm × 270mm** main ALU board
 - Arithmetic operations: ADD, SUB, INC, DEC
 - Logic operations: AND, OR, XOR, NAND, NOR, XNOR
@@ -95,7 +103,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SPICE: 8/8 gates verified (100%)
 - Logisim: 19/19 operations verified (100%)
 - Software: 1,900/1,900 tests passed (100%)
-- Hardware: 18/19 operations verified (95%)
+- Hardware: 19/19 operations verified (100%)
+
 - Overall coverage: 99%
 
 ---
@@ -325,9 +334,9 @@ Future work and roadmap items
 
 ## Links
 
-- [Repository](https://github.com/tmarhguy/cpu)
-- [Issues](https://github.com/tmarhguy/cpu/issues)
-- [Releases](https://github.com/tmarhguy/cpu/releases)
+- [Repository](https://github.com/tmarhguy/8bit-discrete-transistor-alu)
+- [Issues](https://github.com/tmarhguy/8bit-discrete-transistor-alu/issues)
+- [Releases](https://github.com/tmarhguy/8bit-discrete-transistor-alu/releases)
 - [Documentation](docs/)
 
 ---

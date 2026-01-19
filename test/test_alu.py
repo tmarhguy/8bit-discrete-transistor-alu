@@ -416,25 +416,48 @@ def main():
     print("="*80 + "\n")
     
     test_vectors = load_test_vectors()
-    passed = 0
-    failed = 0
+    
+    # Group by operation for table display
+    from collections import defaultdict
+    op_stats = defaultdict(lambda: {"passed": 0, "failed": 0, "name": ""})
     
     for test_data in test_vectors:
+        opcode = test_data.get('opcode', 'UNKNOWN')
+        op_name = test_data.get('test_name', '').split('_')[0]
+        
         try:
             test_alu_operation(test_data)
-            passed += 1
-        except AssertionError as e:
-            failed += 1
-            if failed <= 10:  # Only print first 10 failures
-                print(f"❌ FAIL: {test_data.get('test_name')}")
-                print(f"   {e}\n")
+            op_stats[opcode]["passed"] += 1
+            op_stats[opcode]["name"] = op_name
+        except AssertionError:
+            op_stats[opcode]["failed"] += 1
+            op_stats[opcode]["name"] = op_name
+    
+    # Print table
+    print(f"{'Opcode':<10} | {'Operation':<10} | {'Tests':<10} | {'Passed':<10} | {'Failed':<10} | {'Status'}")
+    print(f"{'-'*11}+{'-'*12}+{'-'*12}+{'-'*12}+{'-'*12}+{'-'*10}")
+    
+    total_passed = 0
+    total_failed = 0
+    
+    for opcode in sorted(op_stats.keys()):
+        stats = op_stats[opcode]
+        passed = stats["passed"]
+        failed = stats["failed"]
+        total = passed + failed
+        status = "PASS" if failed == 0 else "FAIL"
+        
+        print(f"{opcode:<10} | {stats['name']:<10} | {total:<10,} | {passed:<10,} | {failed:<10,} | {status}")
+        
+        total_passed += passed
+        total_failed += failed
     
     print(f"\n{'='*80}")
-    print(f"Results: {passed} passed, {failed} failed out of {passed+failed} total")
-    print(f"Success Rate: {100*passed/(passed+failed):.1f}%")
+    print(f"Results: {total_passed} passed, {total_failed} failed out of {total_passed+total_failed} total")
+    print(f"Success Rate: {100*total_passed/(total_passed+total_failed):.1f}%")
     print(f"{'='*80}\n")
     
-    return 0 if failed == 0 else 1
+    return 0 if total_failed == 0 else 1
 
 
 if __name__ == '__main__':

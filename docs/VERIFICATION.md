@@ -1,6 +1,15 @@
+<!-- markdownlint-disable MD033 -->
+<div align="center">
+
 # Verification & Testing
 
+[![Tests](https://img.shields.io/badge/1.24M-Tests_Passed-success?style=for-the-badge)](../docs/VERIFICATION.md)
+[![Status](https://img.shields.io/badge/Status-Simulation_Verified-success?style=for-the-badge)](../PPA.md)
+[![Operations](https://img.shields.io/badge/19-Operations-blueviolet?style=for-the-badge)](../docs/OPCODE_TABLE.md)
+
 **Multi-level verification strategy for the 8-Bit Transistor ALU**
+
+</div>
 
 This document describes the comprehensive testing methodology from transistor-level SPICE to system hardware validation.
 
@@ -34,14 +43,14 @@ Level 1: Transistor Simulation     ← SPICE (gate-level)
 
 | Gate | Inputs Tested | Waveform | Status |
 |------|---------------|----------|--------|
-| NOT | 2 states | Inverter waveform | ✅ |
-| NAND | 4 combinations | Available | ✅ |
-| NOR | 4 combinations | Available | ✅ |
-| AND | 4 combinations | AND waveform | ✅ |
-| OR | 4 combinations | OR waveform | ✅ |
-| XOR | 4 combinations | Available | ✅ |
-| XNOR | 4 combinations | XNOR waveform | ✅ |
-| Full Adder | 8 combinations | Full adder waveform | ✅ |
+| NOT | 2 states | Inverter waveform |  |
+| NAND | 4 combinations | Available |  |
+| NOR | 4 combinations | Available |  |
+| AND | 4 combinations | AND waveform |  |
+| OR | 4 combinations | OR waveform |  |
+| XOR | 4 combinations | Available |  |
+| XNOR | 4 combinations | XNOR waveform |  |
+| Full Adder | 8 combinations | Full adder waveform |  |
 
 ### SPICE Verification Evidence
 
@@ -53,7 +62,7 @@ Level 1: Transistor Simulation     ← SPICE (gate-level)
 - VOL = 0.05V (within 1% of GND)
 - tPLH = 5.2ns (low to high)
 - tPHL = 4.8ns (high to low)
-- Average tpd = 5ns ✅
+- Average tpd = 5ns 
 
 ![Full Adder Simulation](../media/sim_ngspice_fulladder_waveform.png)
 *Figure 2 - Full adder SPICE: all 8 input combinations show correct sum and carry*
@@ -62,7 +71,7 @@ Level 1: Transistor Simulation     ← SPICE (gate-level)
 ```
 Test case: A=1, B=0, Cin=1
 Expected: Sum=0, Cout=1
-Measured: Sum=0V, Cout=5V ✅
+Measured: Sum=0V, Cout=5V 
 
 All 8 combinations verified correct.
 ```
@@ -174,25 +183,25 @@ pytest test_alu.py -k "ADD" -v
 
 | Operation | Tests | Edge Cases | Exhaustive | Flags | Status |
 |-----------|-------|------------|------------|-------|--------|
-| ADD | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| SUB | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| INC | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| DEC | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| LSL | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| LSR | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| ASR | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| REV | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| NAND | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| NOR | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| XOR | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| PASS A | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| PASS B | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| AND | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| OR | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| XNOR | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| CMP | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| NOT A | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
-| NOT B | 65,636 | ✓ | ✓ | ✓ | ✅ 100% |
+| ADD | 65,636 |  |  |  |  100% |
+| SUB | 65,636 |  |  |  |  100% |
+| INC | 65,636 |  |  |  |  100% |
+| DEC | 65,636 |  |  |  |  100% |
+| LSL | 65,636 |  |  |  |  100% |
+| LSR | 65,636 |  |  |  |  100% |
+| ASR | 65,636 |  |  |  |  100% |
+| REV | 65,636 |  |  |  |  100% |
+| NAND | 65,636 |  |  |  |  100% |
+| NOR | 65,636 |  |  |  |  100% |
+| XOR | 65,636 |  |  |  |  100% |
+| PASS A | 65,636 |  |  |  |  100% |
+| PASS B | 65,636 |  |  |  |  100% |
+| AND | 65,636 |  |  |  |  100% |
+| OR | 65,636 |  |  |  |  100% |
+| XNOR | 65,636 |  |  |  |  100% |
+| CMP | 65,636 |  |  |  |  100% |
+| NOT A | 65,636 |  |  |  |  100% |
+| NOT B | 65,636 |  |  |  |  100% |
 
 **Total:** 1,247,084/1,247,084 tests passing (100%)
 
@@ -223,12 +232,12 @@ pytest test_alu.py -k "ADD" -v
 
 | Operation | Test Input | Expected | Measured | Status |
 |-----------|------------|----------|----------|--------|
-| ADD | A=0x2A, B=0x17 | 0x41 | 0x41 | ✅ |
-| SUB | A=0x64, B=0x23 | 0x41 | 0x41 | ✅ |
-| AND | A=0xF0, B=0x0F | 0x00 | 0x00 | ✅ |
-| OR | A=0xF0, B=0x0F | 0xFF | 0xFF | ✅ |
-| XOR | A=0xAA, B=0x55 | 0xFF | 0xFF | ✅ |
-| CMP | A=0x10, B=0x20 | LESS=1 | LESS=1 | ✅ |
+| ADD | A=0x2A, B=0x17 | 0x41 | 0x41 |  |
+| SUB | A=0x64, B=0x23 | 0x41 | 0x41 |  |
+| AND | A=0xF0, B=0x0F | 0x00 | 0x00 |  |
+| OR | A=0xF0, B=0x0F | 0xFF | 0xFF |  |
+| XOR | A=0xAA, B=0x55 | 0xFF | 0xFF |  |
+| CMP | A=0x10, B=0x20 | LESS=1 | LESS=1 |  |
 
 [![All Operations Demo](../media/alu_top.jpg)](../media/main-demo-logism-evolution-all-opcodes.mp4)
 *Figure 5 - Click to watch: Demonstration of all 19 operations in Logisim*
@@ -274,10 +283,10 @@ Logisim supports HDL export for FPGA validation:
 
 **Measurements:**
 ```
-VCC at power input:    5.00V ✅
-VCC at far end:        4.92V ✅ (< 2% drop)
-GND continuity:        0.1Ω ✅
-Current draw (idle):   85mA ✅
+VCC at power input:    5.00V 
+VCC at far end:        4.92V  (< 2% drop)
+GND continuity:        0.1Ω 
+Current draw (idle):   85mA 
 ```
 
 > **Evidence:** Power distribution verified before functional testing.
@@ -292,9 +301,9 @@ Current draw (idle):   85mA ✅
 
 **Example: NOT gate test**
 ```
-Input = 0V → Output = 4.95V ✅
-Input = 5V → Output = 0.05V ✅
-tpd measured: 6.2ns (vs 5ns expected) ✅
+Input = 0V → Output = 4.95V 
+Input = 5V → Output = 0.05V 
+tpd measured: 6.2ns (vs 5ns expected) 
 ```
 
 #### Phase 3: Component Testing
@@ -303,16 +312,16 @@ tpd measured: 6.2ns (vs 5ns expected) ✅
 
 | A | B | Cin | Expected Sum | Expected Cout | Measured Sum | Measured Cout | Status |
 |---|---|-----|--------------|---------------|--------------|---------------|--------|
-| 0 | 0 | 0 | 0 | 0 | 0V | 0V | ✅ |
-| 0 | 0 | 1 | 1 | 0 | 5V | 0V | ✅ |
-| 0 | 1 | 0 | 1 | 0 | 5V | 0V | ✅ |
-| 0 | 1 | 1 | 0 | 1 | 0V | 5V | ✅ |
-| 1 | 0 | 0 | 1 | 0 | 5V | 0V | ✅ |
-| 1 | 0 | 1 | 0 | 1 | 0V | 5V | ✅ |
-| 1 | 1 | 0 | 0 | 1 | 0V | 5V | ✅ |
-| 1 | 1 | 1 | 1 | 1 | 5V | 5V | ✅ |
+| 0 | 0 | 0 | 0 | 0 | 0V | 0V |  |
+| 0 | 0 | 1 | 1 | 0 | 5V | 0V |  |
+| 0 | 1 | 0 | 1 | 0 | 5V | 0V |  |
+| 0 | 1 | 1 | 0 | 1 | 0V | 5V |  |
+| 1 | 0 | 0 | 1 | 0 | 5V | 0V |  |
+| 1 | 0 | 1 | 0 | 1 | 0V | 5V |  |
+| 1 | 1 | 0 | 0 | 1 | 0V | 5V |  |
+| 1 | 1 | 1 | 1 | 1 | 5V | 5V |  |
 
-**Result:** 8/8 combinations correct ✅
+**Result:** 8/8 combinations correct 
 
 #### Phase 4: System Integration
 
@@ -330,7 +339,7 @@ A = 0x2A (42 decimal)
 B = 0x17 (23 decimal)
 
 Expected: OUT = 0x41 (65), COUT = 0
-Measured: OUT = 0x41 ✅, COUT = 0V ✅
+Measured: OUT = 0x41 , COUT = 0V 
 ```
 
 ![Oscilloscope Testing](../media/fab_testing_oscilloscope.jpg)
@@ -342,25 +351,25 @@ Measured: OUT = 0x41 ✅, COUT = 0V ✅
 
 | Operation | Tests Performed | Passed | Status |
 |-----------|-----------------|--------|--------|
-| ADD | 20 | 20 | ✅ 100% |
-| SUB | 20 | 20 | ✅ 100% |
-| INC | 10 | 10 | ✅ 100% |
-| DEC | 10 | 10 | ✅ 100% |
-| AND | 15 | 15 | ✅ 100% |
-| OR | 15 | 15 | ✅ 100% |
-| XOR | 15 | 15 | ✅ 100% |
-| NAND | 15 | 15 | ✅ 100% |
-| NOR | 15 | 15 | ✅ 100% |
-| XNOR | 15 | 15 | ✅ 100% |
-| PASS A | 10 | 10 | ✅ 100% |
-| PASS B | 10 | 10 | ✅ 100% |
-| NOT A | 10 | 10 | ✅ 100% |
-| NOT B | 10 | 10 | ✅ 100% |
-| CMP | 15 | 15 | ✅ 100% |
-| LSL | 10 | 10 | ✅ 100% |
-| LSR | 10 | 10 | ✅ 100% |
-| ASR | 10 | 10 | ✅ 100% |
-| REV | 5 | 4 | 🔄 80% |
+| ADD | 20 | 20 |  100% |
+| SUB | 20 | 20 |  100% |
+| INC | 10 | 10 |  100% |
+| DEC | 10 | 10 |  100% |
+| AND | 15 | 15 |  100% |
+| OR | 15 | 15 |  100% |
+| XOR | 15 | 15 |  100% |
+| NAND | 15 | 15 |  100% |
+| NOR | 15 | 15 |  100% |
+| XNOR | 15 | 15 |  100% |
+| PASS A | 10 | 10 |  100% |
+| PASS B | 10 | 10 |  100% |
+| NOT A | 10 | 10 |  100% |
+| NOT B | 10 | 10 |  100% |
+| CMP | 15 | 15 |  100% |
+| LSL | 10 | 10 |  100% |
+| LSR | 10 | 10 |  100% |
+| ASR | 10 | 10 |  100% |
+| REV | 5 | 4 |  80% |
 
 **Total:** 235/240 hardware tests passed (97.9%)
 
@@ -376,32 +385,32 @@ Measured: OUT = 0x41 ✅, COUT = 0V ✅
 
 | Test Name | A | B | Op | Expected | Verification |
 |-----------|---|---|----|----------|--------------|
-| **Zero add** | 0x00 | 0x00 | ADD | 0x00, COUT=0 | ✅ Verified |
-| **Max add overflow** | 0xFF | 0x01 | ADD | 0x00, COUT=1 | ✅ Verified |
-| **Self subtract** | 0x42 | 0x42 | SUB | 0x00, EQUAL=1 | ✅ Verified |
-| **Zero minus one** | 0x00 | 0x01 | SUB | 0xFF, LESS=1 | ✅ Verified |
-| **Max increment** | 0xFF | - | INC | 0x00, COUT=1 | ✅ Verified |
-| **Zero decrement** | 0x00 | - | DEC | 0xFF, COUT=0 | ✅ Verified |
+| **Zero add** | 0x00 | 0x00 | ADD | 0x00, COUT=0 |  Verified |
+| **Max add overflow** | 0xFF | 0x01 | ADD | 0x00, COUT=1 |  Verified |
+| **Self subtract** | 0x42 | 0x42 | SUB | 0x00, EQUAL=1 |  Verified |
+| **Zero minus one** | 0x00 | 0x01 | SUB | 0xFF, LESS=1 |  Verified |
+| **Max increment** | 0xFF | - | INC | 0x00, COUT=1 |  Verified |
+| **Zero decrement** | 0x00 | - | DEC | 0xFF, COUT=0 |  Verified |
 
 #### Logic Edge Cases
 
 | Test Name | A | B | Op | Expected | Verification |
 |-----------|---|---|----|----------|--------------|
-| **AND with zero** | 0xFF | 0x00 | AND | 0x00 | ✅ Verified |
-| **OR identity** | 0xAA | 0x00 | OR | 0xAA | ✅ Verified |
-| **XOR self** | 0x42 | 0x42 | XOR | 0x00 | ✅ Verified |
-| **NAND ones** | 0xFF | 0xFF | NAND | 0x00 | ✅ Verified |
-| **NOR zeros** | 0x00 | 0x00 | NOR | 0xFF | ✅ Verified |
+| **AND with zero** | 0xFF | 0x00 | AND | 0x00 |  Verified |
+| **OR identity** | 0xAA | 0x00 | OR | 0xAA |  Verified |
+| **XOR self** | 0x42 | 0x42 | XOR | 0x00 |  Verified |
+| **NAND ones** | 0xFF | 0xFF | NAND | 0x00 |  Verified |
+| **NOR zeros** | 0x00 | 0x00 | NOR | 0xFF |  Verified |
 
 #### Flag Edge Cases
 
 | Test Name | Condition | Expected Flags | Verification |
 |-----------|-----------|----------------|--------------|
-| **Equal detection** | A=B=0x42 | EQUAL=1 | ✅ Verified |
-| **Less than** | A=0x10, B=0x20 | LESS=1 | ✅ Verified |
-| **Greater than** | A=0x50, B=0x30 | LESS=0, EQUAL=0 | ✅ Verified |
-| **Positive result** | 0x20 + 0x10 | POSITIVE=1 | ✅ Verified |
-| **Zero result** | 0x05 - 0x05 | POSITIVE=0, EQUAL=1 | ✅ Verified |
+| **Equal detection** | A=B=0x42 | EQUAL=1 |  Verified |
+| **Less than** | A=0x10, B=0x20 | LESS=1 |  Verified |
+| **Greater than** | A=0x50, B=0x30 | LESS=0, EQUAL=0 |  Verified |
+| **Positive result** | 0x20 + 0x10 | POSITIVE=1 |  Verified |
+| **Zero result** | 0x05 - 0x05 | POSITIVE=0, EQUAL=1 |  Verified |
 
 ---
 
@@ -421,10 +430,10 @@ Measured: OUT = 0x41 ✅, COUT = 0V ✅
 
 | Path | Simulation | Hardware | Δ | Status |
 |------|------------|----------|---|--------|
-| Logic ops | 80ns | 95ns | +15ns | ✅ Within 20% |
-| ADD/SUB | 415ns | 445ns | +30ns | ✅ Within 10% |
-| Shifts | 150ns | 170ns | +20ns | ✅ Within 15% |
-| Flags | 35ns | 42ns | +7ns | ✅ Within 20% |
+| Logic ops | 80ns | 95ns | +15ns |  Within 20% |
+| ADD/SUB | 415ns | 445ns | +30ns |  Within 10% |
+| Shifts | 150ns | 170ns | +20ns |  Within 15% |
+| Flags | 35ns | 42ns | +7ns |  Within 20% |
 
 **Conclusion:** Hardware timing matches simulation within acceptable margins (PCB parasitics account for difference).
 
@@ -536,14 +545,14 @@ def alu_add(a: int, b: int) -> tuple[int, dict]:
 ╔═══════════════════════════════════════════════════╗
 ║          VERIFICATION SUMMARY                     ║
 ╠═══════════════════════════════════════════════════╣
-║  Level 1 (SPICE):            8/8         100%  ✅ ║
-║  Level 2 (Python):    1,247,084/1,247,084 100%  ✅ ║
-║  Level 3 (Logisim):         19/19        100%  ✅ ║
-║  Level 4 (Hardware):       235/240        98%  ✅ ║
+║  Level 1 (SPICE):            8/8         100%   ║
+║  Level 2 (Python):    1,247,084/1,247,084 100%   ║
+║  Level 3 (Logisim):         19/19        100%   ║
+║  Level 4 (Hardware):       235/240        98%   ║
 ║                                                   ║
 ║  Total Test Vectors:     1,247,084                ║
 ║  Test Execution Time:    9.3 seconds              ║
-║  Overall Coverage:                        99%  ✅ ║
+║  Overall Coverage:                        99%   ║
 ╚═══════════════════════════════════════════════════╝
 ```
 
@@ -551,10 +560,10 @@ def alu_add(a: int, b: int) -> tuple[int, dict]:
 
 **Design Correctness:** Very High (99%)
 
-- ✅ Transistor-level verified (SPICE)
-- ✅ Functionally verified (1,900 tests)
-- ✅ System-level verified (Logisim)
-- ✅ Hardware validated (235/240 tests)
+-  Transistor-level verified (SPICE)
+-  Functionally verified (1,900 tests)
+-  System-level verified (Logisim)
+-  Hardware validated (235/240 tests)
 
 **Remaining work:** Complete REV operation hardware debugging
 

@@ -282,21 +282,21 @@ module alu_tb;
             check_result(8'hFF, OVERALL, "NOR: ~(0x00 | 0x00)");
             
             // Test XNOR: ~(0xAA ^ 0x55) = 0x00
-            Opcode = 11; // XNOR
+            Opcode = 15; // XNOR
             A_IN = 8'hAA;
             B_IN = 8'h55;
             #10;
             check_result(8'h00, OVERALL, "XNOR: ~(0xAA ^ 0x55)");
             
             // Test PASS A: Output = A
-            Opcode = 12; // PASS A
+            Opcode = 11; // PASS A
             A_IN = 8'h42;
             B_IN = 8'h00;  // Not used
             #10;
             check_result(8'h42, OVERALL, "PASS A: Output = A");
             
             // Test PASS B: Output = B
-            Opcode = 15; // PASS B
+            Opcode = 12; // PASS B
             A_IN = 8'h00;  // Not used
             B_IN = 8'h42;
             #10;

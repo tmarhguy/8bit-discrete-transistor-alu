@@ -474,26 +474,26 @@ Use blockquotes for evidence:
 
 ### High Priority
 
-1. ❌ **Hero system photo** - Complete assembled system, powered on
-2. ❌ **Side-by-side comparison** - Simulation vs. hardware
-3. ❌ **Annotated PCB** - Component labels on photos
-4. ❌ **Assembly time-lapse** - Build process video
-5. ❌ **All operations demo** - Hardware executing all 19 ops
+1.  **Hero system photo** - Complete assembled system, powered on
+2.  **Side-by-side comparison** - Simulation vs. hardware
+3.  **Annotated PCB** - Component labels on photos
+4.  **Assembly time-lapse** - Build process video
+5.  **All operations demo** - Hardware executing all 19 ops
 
 ### Medium Priority
 
-6. ❌ **Power measurements** - Current/voltage readings
-7. ❌ **Timing waveforms** - Oscilloscope captures from hardware
-8. ❌ **Design iterations** - Before/after comparisons
-9. ❌ **Scale reference** - System next to ruler/coin
-10. ❌ **Thermal images** - Heat distribution under load
+6.  **Power measurements** - Current/voltage readings
+7.  **Timing waveforms** - Oscilloscope captures from hardware
+8.  **Design iterations** - Before/after comparisons
+9.  **Scale reference** - System next to ruler/coin
+10.  **Thermal images** - Heat distribution under load
 
 ### Low Priority
 
-11. ❌ **Component close-ups** - Individual transistor photos
-12. ❌ **Wire routing details** - Interconnect documentation
-13. ❌ **Test jig photos** - Testing setup
-14. ❌ **Packaging** - Shipping/storage solutions
+11.  **Component close-ups** - Individual transistor photos
+12.  **Wire routing details** - Interconnect documentation
+13.  **Test jig photos** - Testing setup
+14.  **Packaging** - Shipping/storage solutions
 
 ---
 

@@ -7,30 +7,30 @@ This document maps the component inventory from the Logisim ALU circuit to the K
 | Component Inventory | Count | KiCad Module Path | Status |
 |---------------------|-------|-------------------|--------|
 | **AND Gates** |
-| 2-input, 1-bit AND | 10 | `gate_and/gate_and_2in/` | ✅ Directory created |
-| 3-input, 1-bit AND | 1 | `gate_and/gate_and_3in/` | ✅ Directory created |
-| 4-input, 1-bit AND | 19 | `gate_and/gate_and_4in/` | ✅ Directory created |
+| 2-input, 1-bit AND | 10 | `gate_and/gate_and_2in/` |  Directory created |
+| 3-input, 1-bit AND | 1 | `gate_and/gate_and_3in/` |  Directory created |
+| 4-input, 1-bit AND | 19 | `gate_and/gate_and_4in/` |  Directory created |
 | **OR Gates** |
-| 2-input, 1-bit OR | 7 | `gate_or/gate_or_2in/` | ✅ Directory created |
-| 3-input, 1-bit OR | 1 | `gate_or/gate_or_3in/` | ✅ Directory created |
+| 2-input, 1-bit OR | 7 | `gate_or/gate_or_2in/` |  Directory created |
+| 3-input, 1-bit OR | 1 | `gate_or/gate_or_3in/` |  Directory created |
 | **NOT Gates** |
-| 1-bit NOT | 40 | `gate_inv/gate_inv_1bit/` | ✅ Directory created |
-| 8-bit NOT | 1 | `gate_inv/gate_inv_8bit/` | ✅ Directory created |
+| 1-bit NOT | 40 | `gate_inv/gate_inv_1bit/` |  Directory created |
+| 8-bit NOT | 1 | `gate_inv/gate_inv_8bit/` |  Directory created |
 | **NAND Gates** |
-| 2-input, 8-bit NAND | 1 | `gate_nand/gate_nand_2in_8bit/` | ✅ Directory created |
+| 2-input, 8-bit NAND | 1 | `gate_nand/gate_nand_2in_8bit/` |  Directory created |
 | **NOR Gates** |
-| 2-input, 1-bit NOR | 1 | `gate_nor/gate_nor_2in_1bit/` | ✅ Directory created |
-| 2-input, 8-bit NOR | 1 | `gate_nor/gate_nor_2in_8bit/` | ✅ Directory created |
-| 8-input, 1-bit NOR | 1 | `gate_nor/gate_nor_8in_1bit/` | ✅ Directory created |
+| 2-input, 1-bit NOR | 1 | `gate_nor/gate_nor_2in_1bit/` |  Directory created |
+| 2-input, 8-bit NOR | 1 | `gate_nor/gate_nor_2in_8bit/` |  Directory created |
+| 8-input, 1-bit NOR | 1 | `gate_nor/gate_nor_8in_1bit/` |  Directory created |
 | **XOR Gates** |
-| 2-input, 8-bit XOR | 3 | `gate_xor/gate_xor_2in_8bit/` | ✅ Directory created |
+| 2-input, 8-bit XOR | 3 | `gate_xor/gate_xor_2in_8bit/` |  Directory created |
 | **Multiplexers** |
-| 2:1 MUX (1-bit select, 8-bit data) | 2 | `mux/mux_2to1_8bit/` | ✅ Directory created |
-| 4:1 MUX (2-bit select, 8-bit data) | 3 | `mux/mux_4to1_8bit/` | ✅ Directory created |
-| 8:1 MUX (3-bit select, 8-bit data) | 1 | `mux/mux_8to1_8bit/` | ✅ Directory created |
+| 2:1 MUX (1-bit select, 8-bit data) | 2 | `mux/mux_2to1_8bit/` |  Directory created |
+| 4:1 MUX (2-bit select, 8-bit data) | 3 | `mux/mux_4to1_8bit/` |  Directory created |
+| 8:1 MUX (3-bit select, 8-bit data) | 1 | `mux/mux_8to1_8bit/` |  Directory created |
 | **Arithmetic** |
-| 1-bit Adder | 1 | `adder1/` | ✅ Existing |
-| 8-bit Adder | N/A | `adder8/` | ✅ Existing |
+| 1-bit Adder | 1 | `adder1/` |  Existing |
+| 8-bit Adder | N/A | `adder8/` |  Existing |
 
 ## Legacy Directories (Preserved)
 

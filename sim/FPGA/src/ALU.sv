@@ -18,11 +18,11 @@
  **   8:  NAND  ~(A & B)
  **   9:  NOR   ~(A | B)
  **   10: XOR   (A ^ B)
- **   11: XNOR  ~(A ^ B)
- **   12: PASS_A (A)
+ **   11: PASS_A (A)
+ **   12: PASS_B (B)
  **   13: AND   (A & B)
  **   14: OR    (A | B)
- **   15: PASS_B (B)
+ **   15: XNOR  ~(A ^ B)
  **   16: CMP   (Compare A, B - Updates flags only, result is 0 or diff)
  **   17: NOT_A (~A)
  **   18: NOT_B (~B)
@@ -107,13 +107,13 @@ module ALU #(
             5'd10: temp_result[WIDTH-1:0] = A ^ B;      // XOR
             5'd8:  temp_result[WIDTH-1:0] = ~(A & B);   // NAND
             5'd9:  temp_result[WIDTH-1:0] = ~(A | B);   // NOR
-            5'd11: temp_result[WIDTH-1:0] = ~(A ^ B);   // XNOR
+            5'd15: temp_result[WIDTH-1:0] = ~(A ^ B);   // XNOR
             
             // Special
             5'd17: temp_result[WIDTH-1:0] = ~A;         // NOT A
             5'd18: temp_result[WIDTH-1:0] = ~B;         // NOT B
-            5'd12: temp_result[WIDTH-1:0] = A;          // PASS A
-            5'd15: temp_result[WIDTH-1:0] = B;          // PASS B
+            5'd11: temp_result[WIDTH-1:0] = A;          // PASS A
+            5'd12: temp_result[WIDTH-1:0] = B;          // PASS B
             5'd7:  begin                                // REV
                 integer i;
                 for(i=0; i<WIDTH; i++) temp_result[i] = A[WIDTH-1-i];

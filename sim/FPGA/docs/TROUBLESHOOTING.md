@@ -476,13 +476,13 @@ assert (OVERALL == expected)
 
 ### Best Practices
 
-1. ✅ **Always simulate before synthesis**
-2. ✅ **Use consistent naming conventions**
-3. ✅ **Add timing constraints early**
-4. ✅ **Test edge cases**
-5. ✅ **Document assumptions**
-6. ✅ **Use version control**
-7. ✅ **Review synthesis warnings**
+1.  **Always simulate before synthesis**
+2.  **Use consistent naming conventions**
+3.  **Add timing constraints early**
+4.  **Test edge cases**
+5.  **Document assumptions**
+6.  **Use version control**
+7.  **Review synthesis warnings**
 
 ---
 

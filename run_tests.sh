@@ -44,14 +44,15 @@ case "$MODE" in
         ;;
 
     exhaustive)
-        print_header "Running Exhaustive Vector Tests"
+        print_header "Running Exhaustive Vector Tests (On-Demand Generation)"
+        echo "Generating 1.2M+ vectors programmatically"
         echo -n "Starting in "
         for i in 3 2 1; do
             echo -n "$i... "
             sleep 1
         done
         echo ""
-        python3 tools/run_tests.py --vectors-dir test/vectors --output-dir results
+        python3 tools/run_exhaustive_tests.py
         ;;
 
     

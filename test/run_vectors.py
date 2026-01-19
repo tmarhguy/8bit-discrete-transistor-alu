@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import gzip
 import json
 from pathlib import Path
 
@@ -103,15 +104,36 @@ def compute_expected(vector: dict):
 
 
 def load_vectors(paths):
+    """
+    Load test vectors from JSON or gzip-compressed JSON files.
+    
+    Industry best practice: Support both .json and .json.gz formats
+    to handle large test suites efficiently (97%+ size reduction with gzip).
+    """
     vectors = []
     for path in paths:
-        with open(path, "r", encoding="utf-8") as handle:
+        # Determine if file is gzip-compressed
+        if path.suffix == '.gz':
+            opener = lambda p: gzip.open(p, 'rt', encoding='utf-8')
+        else:
+            opener = lambda p: open(p, 'r', encoding='utf-8')
+        
+        with opener(path) as handle:
             data = json.load(handle)
-        if not isinstance(data, list):
-            raise ValueError(f"{path} must contain a JSON array")
-        for entry in data:
-            entry["_source"] = path
-        vectors.extend(data)
+        
+        # Handle both array and object formats
+        if isinstance(data, list):
+            entries = data
+        elif isinstance(data, dict):
+            # Support both 'vectors' and 'tests' keys
+            entries = data.get('vectors') or data.get('tests', [])
+        else:
+            raise ValueError(f"{path} must contain a JSON array or object with 'vectors'/'tests' key")
+        
+        for entry in entries:
+            entry["_source"] = str(path)
+        vectors.extend(entries)
+    
     return vectors
 
 

@@ -84,7 +84,7 @@ This guide covers simulation, hardware, and testing issues you might encounter w
 **Solutions:**
 - **Check power supply:** VDD = 5V, VSS = 0V
 - **Verify MOSFET connections:** Source, drain, gate, bulk
-- **Check pull-up/pull-down resistors:** Typical 10kΩ
+- **Check floating inputs:** Generic 10kΩ pull-down resistors
 - **Measure node voltages:** Use `.print V(node)` directive
 
 **Problem:** Slow simulation
@@ -144,22 +144,22 @@ pytest --version
 **Problem:** No output on power-up
 
 **Checklist:**
-1. ✅ **Verify power supply:**
+1.  **Verify power supply:**
    - Measure VCC at IC pins: 5.0V ± 0.25V
    - Check GND continuity across board
    - Ensure adequate current (1A+ supply)
 
-2. ✅ **Check polarity:**
+2.  **Check polarity:**
    - Power connector: red = +5V, black = GND
    - Electrolytic capacitors: stripe = negative
    - MOSFETs: verify pinout (2N7000 vs BS250)
 
-3. ✅ **Inspect solder joints:**
+3.  **Inspect solder joints:**
    - No cold solder joints (dull, grainy appearance)
    - No bridges between pins
    - All pins soldered (check under ICs)
 
-4. ✅ **Test decoupling capacitors:**
+4.  **Test decoupling capacitors:**
    - 100nF ceramic per IC cluster
    - Measure with multimeter (should be ~100nF)
    - Check for shorts (should not be 0Ω)
@@ -167,10 +167,10 @@ pytest --version
 **Problem:** Board gets hot
 
 **Causes:**
-- ❌ Short circuit (VCC to GND)
-- ❌ Reversed MOSFET (drain/source swapped)
-- ❌ Missing current-limiting resistors on LEDs
-- ❌ Excessive fanout (one gate driving too many inputs)
+-  Short circuit (VCC to GND)
+-  Reversed MOSFET (drain/source swapped)
+-  Missing current-limiting resistors on LEDs
+-  Excessive fanout (one gate driving too many inputs)
 
 **Solutions:**
 - Power off immediately
@@ -342,7 +342,7 @@ Expected: LESS = 0 (A >= B)
 
 ## Common Mistakes
 
-### ❌ Reversed PMOS/NMOS
+###  Reversed PMOS/NMOS
 
 **Symptom:** Gate doesn't work, may get hot
 
@@ -355,7 +355,7 @@ Expected: LESS = 0 (A >= B)
 
 ---
 
-### ❌ Missing Pull-Down Resistors
+###  Missing Pull-Down Resistors
 
 **Symptom:** Floating inputs, erratic behavior
 
@@ -368,7 +368,7 @@ Expected: LESS = 0 (A >= B)
 
 ---
 
-### ❌ Cold Solder Joints
+###  Cold Solder Joints
 
 **Symptom:** Intermittent connections, noise
 
@@ -384,7 +384,7 @@ Expected: LESS = 0 (A >= B)
 
 ---
 
-### ❌ Insufficient Power Supply
+###  Insufficient Power Supply
 
 **Symptom:** Voltage drops under load, erratic behavior
 
@@ -400,7 +400,7 @@ Expected: LESS = 0 (A >= B)
 
 ---
 
-### ❌ Incorrect Propagation Delay Assumptions
+###  Incorrect Propagation Delay Assumptions
 
 **Symptom:** Tests fail, but circuit is correct
 
@@ -482,7 +482,7 @@ Expected: LESS = 0 (A >= B)
 
 ### Where to Ask
 
-**GitHub Issues:** [github.com/tmarhguy/cpu/issues](https://github.com/tmarhguy/cpu/issues)
+**GitHub Issues:** [github.com/tmarhguy/8bit-discrete-transistor-alu/issues](https://github.com/tmarhguy/8bit-discrete-transistor-alu/issues)
 - Bug reports
 - Feature requests
 - General questions

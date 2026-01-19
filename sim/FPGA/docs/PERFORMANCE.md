@@ -101,7 +101,7 @@ The critical path is likely through:
 
 | Metric | Discrete Transistor | FPGA | Ratio |
 |--------|---------------------|------|-------|
-| **Transistors** | 3,856 | ~TBD LUTs | TBD |
+| **Transistors** | 3,488 | ~TBD LUTs | TBD |
 | **Physical Size** | Multiple PCBs | Single chip | ~1000× smaller |
 | **Power** | ~500-1000 mA @ 5V | TBD mW | TBD× lower |
 
@@ -117,9 +117,9 @@ The critical path is likely through:
 
 | Metric | Discrete | FPGA | Notes |
 |--------|----------|------|-------|
-| **Component Cost** | ~$50-100 | ~$10-20 | FPGA board |
+| **Component Cost** | TBD | ~$10-20 | FPGA board |
 | **Assembly Time** | 20-40 hours | 0 hours | Pre-built |
-| **Development Time** | 200+ hours | TBD hours | Design + build |
+| **Development Time** | 350+ hours | TBD hours | Design + build |
 
 ---
 
