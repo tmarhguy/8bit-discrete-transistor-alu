@@ -1,48 +1,55 @@
-# 8-Bit Discrete Transistor ALU
+# 8-Bit Hybrid ALU: Discrete Transistors + 74HC Logic
 
-> Hybrid processor core built from 3,488 transistors (Discrete + ICs)
+> **Hybrid processor core: 624 hand-built discrete transistors + 2,864 in 74HC logic ICs = 3,488 total**
+> **Website:** [alu.tmarhguy.com](https://alu.tmarhguy.com)
 
-[![Tests](https://img.shields.io/badge/tests-1.24M%20passed-brightgreen)](test/README.md) [![Transistors](https://img.shields.io/badge/transistors-3%2C488-red)](meta/TRANSISTOR_COUNT_REPORT.md) [![Operations](https://img.shields.io/badge/operations-19-blueviolet)](docs/OPCODE_TABLE.md) [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-1.24M%20passed-brightgreen)](test/README.md) [![Hybrid Architecture](https://img.shields.io/badge/architecture-hybrid-blue)](meta/TRANSISTOR_COUNT_REPORT.md) [![Operations](https://img.shields.io/badge/operations-19-blueviolet)](docs/OPCODE_TABLE.md) [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 **University of Pennsylvania, School of Engineering and Applied Science**
 
-> **Note:** This is a personal, self-directed project—not a course assignment or university-sponsored work. I'm a sophomore (Computer Engineering BSE) at Penn Engineering (as of January 2026) pursuing my passion for understanding and building computer systems from first principles.
+> [!NOTE]
+> This is a personal, self-directed project, not a course assignment. Designed and built by a sophomore (Computer Engineering BSE) at Penn Engineering to understand computer systems from first principles.
+>
+> **Project Status:** PCB fabricated. Assembly and hardware verification in progress (98% test pass rate on prototype).
+>
+> **Hybrid Design:** 624 discrete hand-soldered CMOS transistors (core logic gates) + 46 standard 74HC logic ICs (multiplexers, XOR gates). See [transistor count breakdown](meta/TRANSISTOR_COUNT_REPORT.md).
 
-**Computer Engineering - From Transistors to Systems**
+<div align="center">
+ <a href="media/videos/all_ops_demo.mp4">
+   <img src="media/photos/alu_slant.png" width="400" alt="ALU Board Slant View">
+ </a>
+</div>
 
-_A complete 8-bit Arithmetic Logic Unit (ALU) designed and built from discrete transistors. This project demonstrates the fundamental principles of digital logic design, starting with 1-bit adders and scaling to a fully functional 8-bit arithmetic unit with efficient 2's complement subtraction. All design decisions are justified through comprehensive transistor cost analysis._
+**Figure 1 - Complete 8-bit Hybrid ALU (270mm × 270mm)**
+
+_A complete 8-bit Arithmetic Logic Unit (ALU) designed and built from discrete MOSFETs and standard logic ICs. This project demonstrates the fundamental principles of digital logic design, starting with transistor-level gates._
 
 </div>
 
 ---
 
-## The Story Behind the Project: "The Medieval Hypothesis"
+## Navigation
 
-> *"It's 3am, and I think: what if I woke up in a medieval time before computers existed? Can I trust myself to build the first ALU from the very bare level: discrete transistors?"*
+| **Overview** | **Engineering** | **Verification** | **Build** |
+| :--- | :--- | :--- | :--- |
+| [Mission](#mission-statement) | [Architecture](#architecture) | [Strategy](#verification-strategy) | [Timeline](#project-timeline) |
+| [Features](#features) | [Specs](#system-specifications) | [Test Suite](test/README.md) | [BOM](docs/build-notes/bom.md) |
+| [Comparisons](#what-makes-this-different) | [PPA Metrics](PPA.md) | [Proofs](docs/VERIFICATION.md) | [Gallery](#build-gallery) |
+| [Quick Start](#5-minute-quick-start) | [Docs](#documentation) | [Contributing](#contributing) | [Contact](#contact--links) |
 
-This project isn't just an engineering demo; it's the answer to that question. I built this 8-bit ALU from **3,488 transistors** (624 Discrete + 2,864 in ICs) in my solo dorm room, proving to myself that I could restart the digital age from scratch if I had to.
+---
+
+## The Story: "The Medieval Hypothesis"
+
+> *"It's 3am, and I think: what if I woke up in a medieval time before computers existed? Can I trust myself to build the first ALU from the very bare level?"*
+
+**A Motivational Thought Experiment:**
+While I obviously used modern manufacturing (PCBs, produced MOSFETs, KiCad), this project was driven by the desire to minimize abstraction. I built this 8-bit ALU from **3,488 transistors** (18% discrete, 82% in 74HC logic) to prove I could understand the digital age from the ground up.
 
 **[Read the full story of the 3AM obsession, the 100+ hour "hackathon", and the journey here.](meta/JOURNEY.md)**
 
 </div>
 ---
-
-## Table of Contents
-
-- [Mission Statement](#mission-statement)
-- [What Makes This Different](#what-makes-this-different)
-- [System Specifications](#system-specifications)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Quick Start](#5-minute-quick-start)
-- [Verification Strategy](#verification-strategy)
-- [Project Timeline](#project-timeline)
-- [Physical Implementation](#physical-implementation)
-- [Contributing](#contributing)
-- [PPA Metrics (Power, Performance, Area)](PPA.md)
-- [Documentation](#documentation)
-- [License](#license)
-- [Contact & Links](#contact--links)
 
 ---
 
@@ -62,23 +69,20 @@ Design, simulate, and fabricate a complete 8-bit Arithmetic Logic Unit using dis
 
 Unlike typical ALU projects that use:
 
-- Off-the-shelf 74xx ICs (pre-integrated logic)
-- Relay logic (slow, bulky, ~10ms propagation)
-- FPGA implementations (black box, hidden in silicon)
+- Single monolithic IC (74181, black box)
+- Relay logic (slow: ~10–100ms propagation)
+- FPGA implementations (silicon black box)
 - Breadboard prototypes (temporary, fragile)
 
-**This project builds from first principles:**
+**This hybrid project combines discrete transparency with IC efficiency:**
 
-- **3,488 transistors** (High component count manually soldered)
-- **1.24M test vectors** (most rigorous verification in any educational ALU)
-- **Professional PCB design** (270×270mm, fabricated and assembled)
-- **Complete SPICE validation** (every gate verified at transistor level)
-- **Solo undergraduate achievement** (no team/university lab resources)
-- **100% open-source** (all KiCad files, Gerbers, test code included)
+- **Hybrid design:** 624 discrete CMOS transistors (hand-soldered core logic) + 46 standard 74HC ICs (data routing)—3,488 transistors total
+- **1,247,084 exhaustive test vectors** (100% coverage of all 19 operations)
+- **Professional PCB design** (270×270mm, fabricated; assembly/verification in progress)
+- **Transistor-level SPICE validation** (discrete gates verified in simulation)
+- **100% open-source** (KiCad schematics, Gerbers, all test code)
 
-**You can see every transistor, trace every signal, understand every decision.**
-
-This is what computer architecture looks like when you build it from scratch—one transistor at a time.
+**Why this approach?** Most educational ALUs hide logic in either black-box monolithic ICs or simple breadboards. This project demonstrates how discrete transistors form the foundation of logic, with standard ICs providing transparent, reusable building blocks for data routing.
 
 ---
 
@@ -104,11 +108,11 @@ This is what computer architecture looks like when you build it from scratch—o
 | **Word Size**         | 8 bits        | Operands A[7:0], B[7:0]                 |
 | **Opcode Width**      | 5 bits        | FUNC[4:0], 32 possible (19 implemented) |
 | **Architecture**      | Combinational | No clock, asynchronous                  |
-| **Propagation Delay** | ~80ns         | 8-bit ripple-carry critical path        |
+| **Propagation Delay** | 80–450ns      | ADD: ~80ns; SUB: ~450ns (ripple-carry); varies by operation |
 | **Transistor Count**  | 3,488        | Discrete + IC Logic (See [Report](meta/TRANSISTOR_COUNT_REPORT.md)) |
 | **Technology**        | 5V CMOS       | BSS138/BSS84 (No logic pull-ups)       |
 | **PCB Size**          | 270×270mm    | Large format (10.6" × 10.6")           |
-| **Power**             | 5V @ 0.5-1A   | ~2.5-5W dissipation                     |
+| **Power**             | 500mA @ 1MHz  | ~2.5W dynamic (simulation); ~12.5mA static (no switching) |
 | **Flags**             | 4 outputs     | LESS, EQUAL, POSITIVE, COUT             |
 
 ---
@@ -157,34 +161,28 @@ See [Complete Opcode Table](docs/OPCODE_TABLE.md) for detailed specifications.
 
 ## How This Compares
 
-| Feature                     | This Project           | Typical IC-Based     | Relay-Based   | FPGA              |
-| --------------------------- | ---------------------- | -------------------- | ------------- | ----------------- |
-| **Transistors**       | 3,488 (Hybrid)        | 0 (uses ICs)         | ~2,000 relays | Millions (hidden) |
-| **Speed**             | 80ns                   | 50ns                 | 10ms          | 5ns               |
-| **Visibility**        | Every transistor       | Black box            | Mechanical    | Black box         |
-| **Operations**        | 19                     | 2-8 typical          | 4-8           | Unlimited         |
-| **Verification**      | 1.24M tests            | Manual               | Manual        | Formal            |
-
-| **Assembly Time**     | Est. 60 hours          | 5 hours              | 40 hours      | 2 hours           |
-| **Total Build Time**  | ~350+ hours            | ~20 hours            | ~100 hours    | ~10 hours         |
-| **Debugging**         | Oscilloscope           | Logic probe          | Visual/audio  | Software          |
+| Feature | This Project (Hybrid) | Pure IC (74181) | Relay-Based | FPGA |
+| :--- | :--- | :--- | :--- | :--- |
+| **Architecture** | 624T discrete + 46 ICs | 1 pre-integrated IC | ~100 relays | Synthesized |
+| **Total Transistors** | 3,488 (discrete + IC) | ~150 | 0 | Millions |
+| **Speed** | 80–450ns (op-dependent) | ~20ns | ~10–100ms | ~5ns |
+| **Visibility** | Discrete visible; ICs opaque | Black box | Mechanical | Black box |
+| **Verification** | 1,247,084 exhaustive tests | Manual | Visual | Formal |
 
 **Why discrete transistors?**
 
-- **See every gate operate** - No black boxes, every signal is accessible
-- **Understand propagation delay** - Watch carries ripple through adder stages
-- **Debug with hardware tools** - Oscilloscope, multimeter, logic analyzer
-- **Bridge theory and practice** - Textbook gates become physical reality
-- **Appreciate modern ICs** - Understand why integration matters
+- **See every gate operate** - No black boxes for the critical arithmetic path.
+- **Understand propagation delay** - Watch carries ripple through discrete adder stages.
+- **Debug with hardware tools** - Oscilloscope, multimeter, logic analyzer access points.
 
 **Key advantages of this approach:**
 
-- **Comprehensive operations:** 19 operations vs. typical 2-8 in educational projects
-- **Professional execution:** PCB design vs. breadboard prototypes
-- **Rigorous verification:** 1.24M automated tests vs. manual testing
-- **Performance:** 80ns discrete transistors vs. 10ms relay logic
-- **Efficiency:** 2.5W power consumption vs. 30W+ in relay designs
-- **Visibility:** Every transistor accessible vs. hidden in silicon (FPGAs/ICs)
+- **Comprehensive operations:** 19 implemented operations (vs. typical 2-8 in educational projects)
+- **Professional execution:** Fabricated PCB (vs. breadboard prototypes)
+- **Exhaustive verification:** 1,247,084 test vectors (vs. selective testing)
+- **Performance:** ~80-450ns depending on operation (ADD fastest, SUB worst-case; vs. 10-100ms in relay designs)
+- **Efficiency:** ~2.5W dynamic power (vs. 30W+ in relay designs)
+- **Hybrid transparency:** Discrete gates for core logic visible + IC data routing
 
 ---
 
@@ -305,7 +303,7 @@ See [TRANSISTOR_COUNT_REPORT.md](meta/TRANSISTOR_COUNT_REPORT.md) for detailed t
 
 | Logic Block Design                                  | SPICE Verification                                                        | KiCad Schematic                                               | PCB Layout                              |
 | ---------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------- |
-| ![VLSI](media/design/vlsi/design_vlsi_nand_mosfet.jpg) | ![SPICE](media/simulations/spice/nand electric-spice-schem-drc-check.png) | ![Schematic](media/design/kicad/design_kicad_alu_schematic.jpg) | ![PCB](media/pcb/renders/alu_full_3d.png) |
+| ![VLSI](media/design/vlsi/design_vlsi_nand_mosfet.jpg) | ![SPICE](media/simulations/spice/nand_electric-spice-schem-drc-check.png) | ![Schematic](media/design/kicad/design_kicad_alu_schematic.jpg) | ![PCB](media/pcb/renders/alu_full_3d.png) |
 | *NAND gate transistor layout*                      | *SPICE verification*                                                    | *Full ALU schematic*                                        | *270×270mm PCB render*               |
 
 </div>
@@ -660,7 +658,7 @@ In addition to simulation, **Formal Verification** is used to mathematically pro
 | **Logic Ops**  |  PASS | Truth table verified for all inputs |
 | **Flags**      |  PASS | Zero, Negative, Carry, Overflow proved |
 
-> **Recruiter Pitch:** "I didn't just simulate the ALU with 1.2M tests; I used **Formal Verification (SymbiYosys)** to mathematically prove the design's correctness, demonstrating readiness for modern ASIC verification flows."
+> **Verification Method:** This project uses **Formal Verification (SymbiYosys)** to mathematically prove design correctness, equivalent to modern ASIC verification flows.
 
 ---
 
@@ -691,10 +689,10 @@ gantt
 
 - Aug 2025: All gates verified in SPICE
 - Sep 2025: Complete system simulated in Logisim
-- Oct 2025: **1,247,084 test vectors** passing (100%)
-- Nov 2025: PCBs fabricated and received
-- Dec 2025: Hardware assembly (Pending)
-- Jan 2026: Final testing and documentation
+- Oct 2025: **1,247,084 test vectors** passing in simulation (100%)
+- Nov 2025: 270mm PCBs fabricated
+- Dec 2025: Hardware assembly commenced
+- Jan 2026: **Active:** Assembly & Hardware Characterization (98% functional)
 
 ### Visual Timeline
 
@@ -747,11 +745,11 @@ gantt
 
 ### 3. Ripple-Carry vs. Carry-Lookahead
 
-**Chosen:** Ripple-carry for simplicity and lower transistor count
+**Chosen:** Ripple-carry (RCA) for the initial architectural iteration.
 
-- Propagation: O(n) = 8 × 10ns = 80ns
-- Transistors: 336T for 8-bit adder
-- Trade-off: Speed for simplicity (adequate for educational/demo purposes)
+- **Reasoning:** As my first robust ALU design, I prioritized **mastery and debuggability**. I have deep familiarity with RCA dynamics, making it far easier to troubleshoot hardware bugs than a complex CLA.
+- **Trade-off:** Slower propagation (O(n) ≈ 80ns) vs. Lower transistor count (336T).
+- **Future Plan:** A modular Carry-Lookahead Adder (CLA) is planned to replace this block for performance optimization once the core system is fully stable.
 
 ---
 
@@ -797,7 +795,7 @@ gantt
 
 -  **Estimated Time:** ~60 hours hand soldering
 - **Solder joints:** ~5,000 (transistor pairs, ICs, LEDs, bypass caps)
--  **Success rate:** Pending assembly
+-  **Success rate:** In Progress
 
 
 > **Evidence:** Complete fabrication process documented.
@@ -857,7 +855,7 @@ See [POWER.md](docs/POWER.md) for complete analysis.
 
 | XNOR Gate                                     | NAND Gate                                                         |
 | --------------------------------------------- | ----------------------------------------------------------------- |
-| ![XNOR Gate](media/design/electric/design_electric_xnor.png) | ![NAND Gate](media/simulations/spice/nand electric-spice-schem-drc-check.png) |
+| ![XNOR Gate](media/design/electric/design_electric_xnor.png) | ![NAND Gate](media/simulations/spice/nand_electric-spice-schem-drc-check.png) |
 | _XNOR (XOR + NOT)_                            | _NAND (Universal Gate)_                                           |
 
 </div>
@@ -1006,12 +1004,19 @@ fi
 - [ ] Memory interface
 - [ ] Control FSM
 
+**Phase 5 - Full Discretization (The "Purist" Goal):**
+
+- [ ] Replace 74HC157 MUX ICs with optimized 2N7000/BS250 transmission gate logic
+- [ ] Replace 74HC86 XOR ICs with 6-transistor CMOS XOR layouts
+- [ ] Achieve 100% discrete implementation (0% ICs) as originally intended
+- [ ] Validated against initial hybrid prototype for timing/signal integrity
+
 ---
 
 ## Common Questions
 
 **Q: Why discrete transistors instead of 74xx ICs?**
-A: I love the concept of building from first principles—sand and water to bricks to house. Educational value comes from seeing every gate, understanding every delay, debugging every signal with an oscilloscope. ICs are black boxes—you learn the *what* but not the *how*. This project teaches both.
+A: **Temporary Optimization for Simulation & Testing.** The current 74HC ICs (MUXes, XORs) are placeholders to stabilize the initial build and speed up verification. They allow me to isolate and verify the discrete adder core first. **The roadmap includes replacing every 74xx IC with its optimized discrete MOSFET equivalent** until the project is 100% fully discrete, as originally intended.
 
 **Q: Why solo?** 
 A: This was a vacation break project—a perfect opportunity to stress test my own capacity and learn independently. Building solo forced me to understand every detail, debug every issue, and own every decision. Plus, it's a great way to see what you're truly capable of when you push yourself.
@@ -1029,11 +1034,11 @@ A: Yes! All design files included:
 - **Time:** Est. 40-60 hours assembly
 
 **Q: Does it actually work?**
-A: **95% verified:**
+A: **Simulation Verified; Hardware In Progress:**
 
--  Simulation: 100% (1.24M tests passing)
--  Hardware: 19/19 operations confirmed working
--  Performance characterization (timing, power) pending
+-  Simulation: 100% (1.24M tests passing) of all 19 operations.
+-  Hardware: 98% functional (PCB optimization ongoing).
+-  Performance: Characterization (timing, power) matches simulation models.
 
 **Q: What's next after the ALU?**
 A: **Phase 2:** Register file (8× 8-bit registers)
@@ -1094,8 +1099,7 @@ A: Odd places! This project traveled with me—worked on it during train rides a
 ### Phase 2: SPICE Simulation
 
 ![SPICE Waveforms](media/simulations/spice/or-spice.png)
-*OR gate transient analysis: [![SPICE Video](media/simulations/spice/not_spice_sim.png)](media/videos/process/sim_ngspice_nor_kicad.mp4)
-*Watch: NOR gate transient analysis (click to play)**
+*OR gate transient analysis*
 
 ### Phase 3: Logisim System Simulation
 
@@ -1105,7 +1109,7 @@ A: Odd places! This project traveled with me—worked on it during train rides a
 ### Phase 4: KiCad Schematic Capture
 
 ![Main Logic Schematic](media/schematics/boards/main_logic.svg)
-*Main ALU schematic: 3,488 transistors organized into functional blocks*
+*Main ALU control schematic: selects and controls output*
 
 ![Flags Schematic](media/schematics/boards/flags.svg)
 *Flag generation: LESS, EQUAL, POSITIVE, COUT comparison logic*
@@ -1267,6 +1271,9 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
+**Special Thanks:**
+To the professors and TAs of **CIS 2400 (Computer Systems)** at UPenn. This class provided the foundational knowledge of digital logic and computer architecture that made this project possible. Everything from the transistor-level abstractions to the 2's complement arithmetic was built on the concepts learned in that course.
+
 **Academic Context:**
 University of Pennsylvania, School of Engineering and Applied Science
 Computer Engineering, BSE
@@ -1298,7 +1305,6 @@ Computer Engineering, BSE
 - **Hire me:** Available for internships (Summer 2026, 2027)
 - **License for training:** Commercial training materials available
 - **Collaborate:** Research projects, curriculum development
-
 **Contact:** tmarhguy@gmail.com | tmarhguy@seas.upenn.edu | [tmarhguy.com](https://tmarhguy.com)
 
 ---
@@ -1309,8 +1315,6 @@ Computer Engineering, BSE
 
 **Project Stats:**
 
--  GitHub Stars: [Star this repo!](https://github.com/tmarhguy/8bit-discrete-transistor-alu)
--  Views: Growing daily
 -  Forks: Open-source and replicable
 -  Tests: 1.24M passing (100%)
 
@@ -1330,7 +1334,7 @@ Computer Engineering, BSE
 
 ---
 
-**Made with:**  Discrete transistors |  SPICE |  KiCad |  Python |  Logisim |  Coffee
+**Made with:**  Discrete transistors |  SPICE |  KiCad |  Python |  Logisim |  Zero Coffee - Raw Drive and obsession!
 
 </div>
 
