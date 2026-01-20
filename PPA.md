@@ -2,7 +2,7 @@
 
 # Power, Performance, and Area (PPA) Metrics
 
-[![Critical Path](https://img.shields.io/badge/Critical_Path-~400ns-blue?style=for-the-badge)](PPA.md#1-performance-metrics)
+[![Critical Path](https://img.shields.io/badge/Critical_Path-~80ns-blue?style=for-the-badge)](PPA.md#1-performance-metrics)
 [![Power](https://img.shields.io/badge/Power-2.5W_@_1MHz-red?style=for-the-badge)](PPA.md#2-power-characterization)
 [![Transistors](https://img.shields.io/badge/Transistors-3%2C488-brightgreen?style=for-the-badge)](meta/TRANSISTOR_COUNT_REPORT.md)
 
@@ -26,7 +26,7 @@
 
 | Operation | Test Vector    | Estimated Delay (t_pd) | Max Frequency (1/t_pd) | Notes                          |
 |-----------|----------------|------------------------|------------------------|--------------------------------|
-| **ADD**   | A=0xFF, B=0x01 | ~400-450 ns            | ~2.5 MHz               | 8-bit ripple carry (20 levels) |
+| **ADD**   | A=0xFF, B=0x01 | ~80-90 ns              | ~12.5 MHz              | 8-bit ripple carry (20 levels) |
 | **SUB**   | A=0x00, B=0x01 | ~450-500 ns            | ~2.0 MHz               | ADD + XOR overhead             |
 
 ### 1.2 Latency Breakdown by Sub-Circuit
@@ -35,7 +35,7 @@
 |-----------------|----------------|--------------------------|
 | Logic (AND/OR)  | ~100 ns (Est)  | Single gate level + MUX  |
 | Shifter Unit    | ~150 ns (Est)  | Barrel logic selector    |
-| Flag Generator  | ~400 ns (Est)  | Magnitude comparator     |
+| Flag Generator  | ~80 ns (Est)   | Magnitude comparator     |
 
 <div align="center">
 

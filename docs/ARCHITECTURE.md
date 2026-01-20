@@ -34,7 +34,7 @@ This document describes the complete hardware architecture from transistor-level
 **Architecture Type:** Pure combinational logic
 - No clock, no registers, no sequential elements in ALU core
 - Outputs track inputs continuously
-- Propagation delay: ~400ns (8-bit arithmetic operations)
+- Propagation delay: ~80ns (8-bit arithmetic operations)
 
 **Physical Implementation:**
 - **PCB Size:** 270mm × 270mm (10.6" × 10.6")
@@ -177,7 +177,7 @@ FUNC ────┴──> LOGIC_SEL
 
 **Combinational stages:**
 1. Input buffers: ~10ns
-2. Function units (adder or logic): ~300-400ns
+2. Function units (adder or logic): ~60-80ns
 3. 2:1 MUX: ~20ns
 4. Global inverter: ~10ns (if active)
 5. Output buffers: ~10ns
@@ -516,7 +516,7 @@ B[7:0]      ~120ns
 - SUM[7:0] - Arithmetic result
 - COUT - Carry out
 
-**Timing:** 415ns typical (400ns adder + 15ns XOR)
+**Timing:** 85ns typical (80ns adder + 5ns XOR)
 
 ### Logic Unit Interface
 
@@ -603,7 +603,7 @@ GND ──┴─── NMOS_A ───┬─── NMOS_B ─── OUT
 
 | Metric | Ripple-Carry | Carry-Lookahead |
 |--------|--------------|-----------------|
-| Delay | O(n) = 400ns | O(log n) = 120ns |
+| Delay | O(n) = 80ns | O(log n) = 30ns |
 | Transistors | 336T | ~600T |
 | Complexity | Low (regular) | High (irregular) |
 | Layout | Simple | Complex |

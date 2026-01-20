@@ -5,7 +5,7 @@
 
 [![Operations](https://img.shields.io/badge/19-Operations-blueviolet?style=for-the-badge)](../docs/OPCODE_TABLE.md)
 [![Status](https://img.shields.io/badge/Status-Simulation_Verified-success?style=for-the-badge)](../PPA.md)
-[![Delay](https://img.shields.io/badge/400ns-Prop_Delay-blue?style=for-the-badge)](../PPA.md)
+[![Delay](https://img.shields.io/badge/80ns-Prop_Delay-blue?style=for-the-badge)](../PPA.md)
 
 **Detailed specification of all 19 ALU operations**
 

@@ -104,7 +104,7 @@ This is what computer architecture looks like when you build it from scratch—o
 | **Word Size**         | 8 bits        | Operands A[7:0], B[7:0]                 |
 | **Opcode Width**      | 5 bits        | FUNC[4:0], 32 possible (19 implemented) |
 | **Architecture**      | Combinational | No clock, asynchronous                  |
-| **Propagation Delay** | ~400ns        | 8-bit ripple-carry critical path        |
+| **Propagation Delay** | ~80ns         | 8-bit ripple-carry critical path        |
 | **Transistor Count**  | 3,488        | Discrete + IC Logic (See [Report](meta/TRANSISTOR_COUNT_REPORT.md)) |
 | **Technology**        | 5V CMOS       | BSS138/BSS84 (No logic pull-ups)       |
 | **PCB Size**          | 270×270mm    | Large format (10.6" × 10.6")           |
@@ -160,7 +160,7 @@ See [Complete Opcode Table](docs/OPCODE_TABLE.md) for detailed specifications.
 | Feature                     | This Project           | Typical IC-Based     | Relay-Based   | FPGA              |
 | --------------------------- | ---------------------- | -------------------- | ------------- | ----------------- |
 | **Transistors**       | 3,488 (Hybrid)        | 0 (uses ICs)         | ~2,000 relays | Millions (hidden) |
-| **Speed**             | 400ns                  | 50ns                 | 10ms          | 5ns               |
+| **Speed**             | 80ns                   | 50ns                 | 10ms          | 5ns               |
 | **Visibility**        | Every transistor       | Black box            | Mechanical    | Black box         |
 | **Operations**        | 19                     | 2-8 typical          | 4-8           | Unlimited         |
 | **Verification**      | 1.24M tests            | Manual               | Manual        | Formal            |
@@ -182,7 +182,7 @@ See [Complete Opcode Table](docs/OPCODE_TABLE.md) for detailed specifications.
 - **Comprehensive operations:** 19 operations vs. typical 2-8 in educational projects
 - **Professional execution:** PCB design vs. breadboard prototypes
 - **Rigorous verification:** 1.24M automated tests vs. manual testing
-- **Performance:** 400ns discrete transistors vs. 10ms relay logic
+- **Performance:** 80ns discrete transistors vs. 10ms relay logic
 - **Efficiency:** 2.5W power consumption vs. 30W+ in relay designs
 - **Visibility:** Every transistor accessible vs. hidden in silicon (FPGAs/ICs)
 
@@ -277,7 +277,7 @@ Outputs: OUT[7:0], {LESS, EQUAL, POSITIVE, COUT}
 **Key characteristics:**
 
 - **Combinational:** No clock, outputs track inputs continuously
-- **Propagation delay:** ~400ns for 8-bit arithmetic (critical path)
+- **Propagation delay:** ~80ns for 8-bit arithmetic (critical path)
 - **Asynchronous:** Immediate response to input changes
 
 ### Component Breakdown
@@ -749,7 +749,7 @@ gantt
 
 **Chosen:** Ripple-carry for simplicity and lower transistor count
 
-- Propagation: O(n) = 8 × 50ns = 400ns
+- Propagation: O(n) = 8 × 10ns = 80ns
 - Transistors: 336T for 8-bit adder
 - Trade-off: Speed for simplicity (adequate for educational/demo purposes)
 
@@ -824,7 +824,7 @@ See [PPA.md](PPA.md) for the complete engineering datasheet.
 
 | Path                    | Delay    | Components               |
 | ----------------------- | -------- | ------------------------ |
-| **Critical Path** | ~400ns   | 8-bit ripple-carry adder |
+| **Critical Path** | ~80ns    | 8-bit ripple-carry adder |
 | Inverter                | ~5-10ns  | Single CMOS pair         |
 | 2-input gate            | ~10-20ns | NAND/NOR/AND/OR          |
 | Full adder              | ~50ns    | 2× XOR, 2× AND, 1× OR |
@@ -950,7 +950,7 @@ fi
 
 - Ripple-carry adder: O(n) propagation delay
 - No pipelining: Single combinational path
-- 400ns latency for 8-bit operations
+- 80ns latency for 8-bit operations
 
 **Functional:**
 
@@ -1017,7 +1017,7 @@ A: I love the concept of building from first principles—sand and water to bric
 A: This was a vacation break project—a perfect opportunity to stress test my own capacity and learn independently. Building solo forced me to understand every detail, debug every issue, and own every decision. Plus, it's a great way to see what you're truly capable of when you push yourself.
 
 **Q: Why ripple-carry instead of carry-lookahead adder?**
-A: Simplicity and transistor count. Ripple-carry uses 336T vs. ~600T for carry-lookahead. For a 400ns target (adequate for educational purposes), ripple-carry is the right trade-off. Plus, you can literally *see* the carry propagate through stages on an oscilloscope. (Total project count: 3,488T via 74xx optimization).
+A: Simplicity and transistor count. Ripple-carry uses 336T vs. ~600T for carry-lookahead. For an 80ns target (adequate for educational purposes), ripple-carry is the right trade-off. Plus, you can literally *see* the carry propagate through stages on an oscilloscope. (Total project count: 3,488T via 74xx optimization).
 
 **Q: Can I build this myself?**
 A: Yes! All design files included:
@@ -1044,7 +1044,7 @@ See [Roadmap](#roadmap) for details.
 **Q: How fast is it?**
 A: **Theoretical:**
 
-- Arithmetic: ~400ns (8-bit ripple-carry propagation)
+- Arithmetic: ~80ns (8-bit ripple-carry propagation)
 - Logic: ~80ns (single gate level + MUX)
 - Max frequency: ~2.5 MHz (if inputs could toggle that fast)
 
