@@ -1,5 +1,11 @@
 # Documentation Index
 
+> **Core Metrics:**
+> - **[3,488 Transistors](../meta/TRANSISTOR_COUNT_REPORT.md)** (Discrete + ICs)
+> - **[19 Operations](../docs/OPCODE_TABLE.md)** (Arithmetic, Logic, Shift)
+> - **[1,247,084 Tests](../test/README.md)** (Exhaustive verification)
+> - **[PPA Analysis](../PPA.md) | [Verification Details](verification/README.md)**
+
 This directory contains all project documentation organized by category.
 
 ## Structure
