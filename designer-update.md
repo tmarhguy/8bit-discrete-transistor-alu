@@ -1,23 +1,80 @@
-his update:
+![Status](https://img.shields.io/badge/status-optimization%20phase-orange)
+![Architecture](https://img.shields.io/badge/architecture-fully%20discrete%20CMOS-blueviolet)
+![Operations](https://img.shields.io/badge/ops-19-success)
+![Transistors](https://img.shields.io/badge/transistors-3%2C488%2B-critical)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-In a rather intentional turn of things, hoping to improve fact and verifiability, I will replace or black boxes with full discrete parts! By that I mean all muxes, xor gates will all be designed with MOSFETs. Currently, there are 624 discrete MOSFET components, and an estimated 2864 MOSFET components “hidden” in 74xx black box muxes and xors.
+---
 
-The initial choice of these 74xx ICs were to manage propagation delays, hence overall speed, and cost! Engineering I heard without constraint is a mere fantasy, one which the real world can’t afford!
+In a rather intentional turn of things, hoping to improve **fact and verifiability**, I will replace all black boxes with fully discrete parts. By that, I mean every mux and XOR gate will be designed directly with MOSFETs.
 
-Consider an 8to1 2 bit mux, which costs at most $2, compared to a discrete implementation that will cost of order 10^2 of transistors, each of which will cost at least $0.50, if generosity is a real thing.
+Currently, there are **624 discrete MOSFET components**, and an estimated **2,864 MOSFETs “hidden”** inside 74xx black-box muxes and XORs.
 
-But to compromise a rather intriguing pursuit of “discrete transistor”, a one time adventure for cost, makes me pause… What’s the worst that could happen? In light of this, all 74xx ICs will be treated as black boxes that will be replaced, and their only current purpose is to help design an MVP! Their existence sped up the process and initial simulations for a first timer ALU sophomore designer. But for facts and reference, this will be a fully discrete transistor 8bit ALU, that supports 19 operations.
+The initial choice of these 74xx ICs was to manage propagation delays—hence overall speed—and cost. Engineering, I’ve learned, without constraint is a mere fantasy; one the real world simply cannot afford.
 
-Elegance will be compromised, but practicality is what the world we know was founded on! Besides, abstraction if treated with this presumed respect, facilitates than deceives progress and truth
+Consider an 8-to-1, 2-bit mux: it costs at most **$2** as an IC, compared to a discrete implementation that would require on the order of **10² transistors**, each costing at least **$0.50** (if generosity is real).  
 
+But to compromise such an intriguing pursuit of “discrete transistor” design—even once—for cost gives me pause. What’s the worst that could happen?
 
+In light of this, all 74xx ICs will now be treated as **temporary black boxes** that *will be replaced*. Their only current purpose is to help design an MVP. Their existence sped up the process and early simulations for a first-time ALU sophomore designer.
 
-Worth mentioning, designing components from MOSFET level to replace the black boxes here does perhaps an unrealized good. Consider building a 2 to 1 mux, I would need 4 of 3 input and gates followed by a 4 input or gate. Cost analysis, a 3 input and gate requires 2 and gates, that makes 12 MOSFETs (6T per and), so 48T in all. For a 4 input OR, 3 ORs are needed, also 3 * 6T.
+But for facts and reference, this **will be a fully discrete transistor 8-bit ALU supporting 19 operations.**
 
-In all using “ready gates”, you use 18 + 48 which is 66T.
+Elegance will be compromised, but practicality is what the world we know was founded on. Besides, abstraction—when treated with proper respect—**facilitates rather than deceives** progress and truth.
 
-However at the MOSFET level, you cut down a 3 in AND to a 3 in NAND plus an inverter, which is 8T. 4 of those are 32T! Again for 4 in or is 4in Nor plus inverter. This is 10T and not 18 as one is forced to use beyond MOSFET design.
+---
 
-By this, a mux is reduced to 42T, which is essentially 4/11 lower or 36% more savings! By this design, I begin to approach a more robust ALU with less count of transistors and thus less worry for propagation delay in the discrete setting.
+### Why designing from the MOSFET level actually helps
 
-Nonetheless, to assume this a final solution is only half if not a quarter of the picture. Transmission Gates as I read offer a much sane option than this pseudo-“VLSI” attempt! This TG attempt cuts down Transistor counts by as many as I can casually compute mentally as is, but it is considerably significant! This is the more reason why I am still in optimization phase of this project! 
+Designing components from the MOSFET level to replace black boxes does an unrealized good.
+
+Take a simple **2-to-1 mux**:
+
+Using ready-made logic:
+- You’d need **four 3-input AND gates**  
+- Followed by **one 4-input OR gate**
+
+Cost analysis:
+- A 3-input AND requires **two AND gates**  
+- Each AND = **6T**, so → **12T per 3-input AND**  
+- Four of them → **48T**
+
+For the OR stage:
+- A 4-input OR needs **three OR gates**  
+- Each OR = **6T**, so → **18T**
+
+**Total using logic gates:**
+> 48T + 18T = **66 transistors**
+
+---
+
+### MOSFET-level optimization
+
+At the transistor level:
+
+- A 3-input AND → **3-input NAND + inverter = 8T**
+- Four of those → **32T**
+
+For OR:
+- A 4-input OR → **4-input NOR + inverter = 10T**
+
+**Total:**
+> 32T + 10T = **42 transistors**
+
+That’s a **36% reduction**  
+(4/11 fewer transistors).
+
+By this design, I begin approaching a **more robust ALU** with:
+- Lower transistor count  
+- Less propagation delay  
+- Better scalability for discrete logic
+
+---
+
+### But… not the final answer
+
+Still, assuming this is a final solution is only **half—if not a quarter—of the picture.**
+
+Transmission gates, from what I’ve read, offer a far more sane option than this pseudo-“VLSI” approach. A TG-based design cuts transistor counts even further—significantly so—even by rough mental math.
+
+And that is precisely why I am **still in the optimization phase** of this project.

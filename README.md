@@ -10,13 +10,13 @@
 > [!NOTE]
 > This is a personal, self-directed project, not a course assignment. Designed and built by a sophomore (Computer Engineering BSE) at Penn Engineering to understand computer systems from first principles.
 >
-> **Project Status:** PCB fabricated. Assembly and hardware verification in progress (98% test pass rate on prototype).
+> **Project Status:** PCB fabricated. Assembly and hardware verification in progress.
 >
 > **Hybrid Design:** 624 discrete hand-soldered CMOS transistors (core logic gates) + 46 standard 74HC logic ICs (multiplexers, XOR gates). See [transistor count breakdown](meta/TRANSISTOR_COUNT_REPORT.md).
 
 <div align="center">
  <a href="media/videos/all_ops_demo.mp4">
-   <img src="media/photos/alu_slant.png" width="400" alt="ALU Board Slant View">
+    <img src="media/photos/alu_slant.png" width="400" alt="ALU Board Slant View" style="margin-top:32px;margin-bottom:32px;">
  </a>
 </div>
 
@@ -692,7 +692,7 @@ gantt
 - Oct 2025: **1,247,084 test vectors** passing in simulation (100%)
 - Nov 2025: 270mm PCBs fabricated
 - Dec 2025: Hardware assembly commenced
-- Jan 2026: **Active:** Assembly & Hardware Characterization (98% functional)
+- Jan 2026: **Active:** Assembly & Hardware Characterization
 
 ### Visual Timeline
 
@@ -1037,7 +1037,7 @@ A: Yes! All design files included:
 A: **Simulation Verified; Hardware In Progress:**
 
 -  Simulation: 100% (1.24M tests passing) of all 19 operations.
--  Hardware: 98% functional (PCB optimization ongoing).
+-  Hardware: Assembly and verification in progress (PCB optimization ongoing).
 -  Performance: Characterization (timing, power) matches simulation models.
 
 **Q: What's next after the ALU?**
